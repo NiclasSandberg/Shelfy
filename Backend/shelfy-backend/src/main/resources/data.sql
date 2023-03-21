@@ -1,0 +1,3 @@
+INSERT INTO product(id, name, description, date_opened, days_until_expiry) VALUES (123456, 'Toothbrush', 'This is my toothbrush','2023-03-21', 90);
+INSERT INTO product(id, name, description, date_opened, days_until_expiry) VALUES (12345, 'Sunscreen', 'Use daily','2023-03-21', 360);
+INSERT INTO product(id, name, description, date_opened, days_until_expiry) VALUES (1234, 'Mascara', 'This is my mascara','2023-03-21', 180);
