@@ -1,25 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { getProducts } from './api';
+import { IProduct } from './interfaces';
+import ProductCard from './components/ProductCard';
 
 function App() {
+  const [products, setProducts] = useState<IProduct[]>([]);
+
+  useEffect(() => {
+    getData();
+  }, []) 
+
+  const getData = async () => {
+    const products = await getProducts();
+    console.log({products});
+    setProducts(products);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <h1>YO!!</h1> 
+    {/*products.length === 0 && "Loading ..."*/}
+    {products?.map(prod =>  <ProductCard product={prod} key={prod.id} /> )}
+    </>
   );
 }
 
