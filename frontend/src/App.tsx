@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { getProducts } from './api';
 import { IProduct } from './interfaces';
@@ -9,20 +8,29 @@ function App() {
   const [products, setProducts] = useState<IProduct[]>([]);
 
   useEffect(() => {
-    getData();
-  }, []) 
+    getProducts();
+  }, [])
 
-  const getData = async () => {
-    const products = await getProducts();
-    console.log({products});
-    setProducts(products);
+  // const getData = async () => {
+  //   const products = await getProducts();
+  //   console.log({products});
+  //   setProducts(products);
+  // }
+
+  const getProducts = async () => {
+    const response: Response = await fetch("http://localhost:8080/products");
+    const data: IProduct[] = await response.json();
+
+    setProducts(data);
+    console.log("THE DATA IS HERE " + data)
   }
+
 
   return (
     <>
-    <h1>YO!!</h1> 
-    {/*products.length === 0 && "Loading ..."*/}
-    {products?.map(prod =>  <ProductCard product={prod} key={prod.id} /> )}
+      <h1>YO!!</h1>
+      {products.length === 0 && "Loading ..."}
+      {products?.map(prod => <ProductCard product={prod} key={prod.id} />)}
     </>
   );
 }
