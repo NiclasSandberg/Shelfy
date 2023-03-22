@@ -15,6 +15,6 @@ type getProductRes = {
   export const getProducts = async () => {
     const response = await fetch("http://localhost:8080/products");
     const json = await response.json();
-    console.log(json.products)
+  
     return json;
   };

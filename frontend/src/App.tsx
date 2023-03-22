@@ -12,18 +12,22 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { Dayjs } from 'dayjs';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+
 
 function App() {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [months, setMonths] = useState("");
+  const [value, setValue] = React.useState<Dayjs | null>(null);
   
   useEffect(() => {
     getData();
-  }, [months]) 
+  }, [value]) 
 
   const getData = async () => {
     const products = await getProducts();
-    console.log({products});
+   
     setProducts(products);
   }
   
@@ -31,6 +35,7 @@ function App() {
     setMonths(event.target.value);
   };
 
+  
   
   return (
     <>
@@ -60,11 +65,14 @@ function App() {
           <MenuItem value={12}>12M</MenuItem>
         </Select>
       </FormControl>
-     {/*<LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker />
-    </LocalizationProvider>*/}
-    {months}M
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer components={['DatePicker']}>
+        <DatePicker value={value} onChange={(newValue) => setValue(newValue)} />
+      </DemoContainer>
+    </LocalizationProvider>
+    
     </div>
+    {value != null ? value.toString()  : null}
     </>
   );
 }
