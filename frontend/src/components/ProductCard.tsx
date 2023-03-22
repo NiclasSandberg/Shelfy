@@ -8,10 +8,11 @@ interface ProductCardAttrs {
 const ProductCard = ({ product } : ProductCardAttrs) => {
   return (
     <>
-    <div>ProductCard</div>
-    {product.dateOpened}
+    <ul>Expires in: {product.daysUntilExpiry} months and 5 days</ul>
     </>
   )
 }
+
+
 
 export default ProductCard
