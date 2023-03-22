@@ -1,14 +1,21 @@
 import React from 'react'
 import { IProduct } from '../interfaces'
+import { Link } from 'react-router-dom';
 
 interface ProductCardAttrs {
-    product: IProduct
+  product: IProduct
 }
 
-const ProductCard = ({ product } : ProductCardAttrs) => {
+const ProductCard = ({ product }: ProductCardAttrs) => {
   return (
     <>
-    <ul>Expires in: {product.daysUntilExpiry} months and 5 days</ul>
+      <Link to={'/products/' + product.id} >
+        <div>
+          {product.name} <br />
+          {product.dateOpened}
+          <br /><br />
+        </div>
+      </Link>
     </>
   )
 }
