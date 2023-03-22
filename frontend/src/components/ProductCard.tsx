@@ -1,5 +1,6 @@
 import React from 'react'
 import { IProduct } from '../interfaces'
+import { Link } from 'react-router-dom';
 
 interface ProductCardAttrs {
   product: IProduct
@@ -8,10 +9,13 @@ interface ProductCardAttrs {
 const ProductCard = ({ product }: ProductCardAttrs) => {
   return (
     <>
-      <div>ProductCard</div>
-      {product.name} <br />
-      {product.dateOpened}
-      <br /><br />
+      <Link to={'/products/' + product.id} >
+        <div>
+          {product.name} <br />
+          {product.dateOpened}
+          <br /><br />
+        </div>
+      </Link>
     </>
   )
 }

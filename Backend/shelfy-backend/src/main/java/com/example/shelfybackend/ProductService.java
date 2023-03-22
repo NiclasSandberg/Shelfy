@@ -1,5 +1,6 @@
 package com.example.shelfybackend;
 
+import com.example.shelfybackend.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,5 +14,9 @@ public class ProductService {
 
     public List<Product> getAllProducts() {
         return repo.getAllProducts();
+    }
+
+    public Product getProductById(String id){
+        return repo.getProductById(id);
     }
 }
