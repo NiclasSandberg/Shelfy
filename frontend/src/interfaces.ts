@@ -4,5 +4,6 @@ export interface IProduct {
     description: string;
     dateOpened: string;
     daysUntilExpiry: string;
+    category: string;
 }
   

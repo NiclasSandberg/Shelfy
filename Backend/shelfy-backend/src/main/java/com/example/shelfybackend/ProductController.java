@@ -30,6 +30,7 @@ public class ProductController {
     @PostMapping
     ResponseEntity<Product> createProduct(@RequestBody Product product){
         Product newProduct = service.saveProduct(product);
+
         return ResponseEntity.ok(newProduct);
 
     }
