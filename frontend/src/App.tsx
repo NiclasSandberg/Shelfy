@@ -18,9 +18,18 @@ function App() {
 
   return (
     <>
-      <h1>YO!!</h1>
-      {/*products.length === 0 && "Loading ..."*/}
-      {products?.map(prod => <ProductCard product={prod} key={prod.id} />)}
+      <BrowserRouter>
+
+        <Routes>
+          {/* <Route path="/articles/new" element={<ArticleCreate />} /> */}
+          <Route path="/products/:productId" element={<ProductView />} />
+          <Route path='/' element={<ProductList />} />
+          {/* <Route path="/articles/:articleId/edit" element={<ArticleEdit />} /> */}
+
+        </Routes>
+      </BrowserRouter>
+      this is a comment
+
     </>
 
   );
