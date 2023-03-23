@@ -21,4 +21,8 @@ public class ProductRepo {
         Optional<Product> byId = repo.findById(id);
         return byId.orElse(null);
     }
+
+    public Product saveNewProduct(Product product){
+        return repo.save(product);
+    }
 }
