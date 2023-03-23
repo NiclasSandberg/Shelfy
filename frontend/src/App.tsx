@@ -4,18 +4,6 @@ import ProductList from './components/ProductList';
 import ProductView from './components/ProductView';
 
 function App() {
-  const [products, setProducts] = useState<IProduct[]>([]);
-
-  useEffect(() => {
-    getData();
-  }, [])
-
-  const getData = async () => {
-    const products = await getProducts();
-    console.log({ products });
-    setProducts(products);
-  }
-
   return (
     <>
       <BrowserRouter>
@@ -28,7 +16,7 @@ function App() {
 
         </Routes>
       </BrowserRouter>
-      this is a comment
+
 
     </>
 
