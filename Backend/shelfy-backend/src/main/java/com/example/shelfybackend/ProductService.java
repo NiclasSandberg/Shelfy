@@ -19,4 +19,9 @@ public class ProductService {
     public Product getProductById(String id){
         return repo.getProductById(id);
     }
+
+
+    public Product saveProduct(Product product) {
+        return repo.saveNewProduct(product);
+    }
 }
