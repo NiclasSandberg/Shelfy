@@ -2,8 +2,7 @@ export interface IProduct {
     id?: string;
     name: string;
     description: string;
-    dateOpened: string;
-    daysUntilExpiry: string;
+    dateOpened: any;
+    expiryDate: Date;
     category: string;
 }
-  

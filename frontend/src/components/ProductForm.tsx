@@ -8,60 +8,55 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { SelectChangeEvent } from '@mui/material';
 
 interface ProductFormAttrs {
-    product: Partial<IProduct>;
-    onSubmit: (updatedProduct: IProduct) => any;
+  product: Partial<IProduct>;
+  onSubmit: (updatedProduct: IProduct) => any;
 }
 
-const ProductForm = ({ product, onSubmit}: ProductFormAttrs) => {
+const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
 
   const [name, setName] = useState<string>(product.name || "");
   const [description, setDescription] = useState<string>(product.description || "");
-  const [dateOpened, setdateOpened] = useState<string>(product.dateOpened || "");
-  const [daysUntilExpiry, setDaysUntilExpiry] = useState<string>(product.daysUntilExpiry || "");
+  const [dateOpened, setDateOpened] = useState<Dayjs | null>(null);
+  // const [daysUntilExpiry, setDaysUntilExpiry] = useState<string>(product.daysUntilExpiry || "");
   const [category, setCategory] = useState<string>(product.category || "");
-  const [value, setValue] = React.useState<Dayjs | null>(null);
   const [months, setMonths] = useState("");
 
 
   const onFormSubmit = async (e: any) => {
-      e.preventDefault();
+    e.preventDefault();
 
-      const updatedProduct: IProduct = { ...product, name, description, dateOpened, daysUntilExpiry, category} as IProduct;
-      onSubmit(updatedProduct);
+    const updatedProduct: IProduct = { ...product, name, description, dateOpened, category } as IProduct;
+    onSubmit(updatedProduct);
 
   }
+
 
   const handleChange = (event: SelectChangeEvent) => {
     setMonths(event.target.value);
   };
   return (
     <>
-    <div className="form-box">
+      <div className="form-box">
         <form onSubmit={onFormSubmit} className="product-form">
-            <label>Product name: </label>
-            <input type="text" value={name} onChange={e => setName(e.target.value)} />
-            <label>Description: </label>
-            <input type="text" value={description} onChange={e => setDescription(e.target.value)} />
-        
-            <label>Product name: </label>
-            <input type="text" value={name} onChange={e => setName(e.target.value)} />
+          <label>Product name: </label>
+          <input type="text" value={name} onChange={e => setName(e.target.value)} />
+          <label>Description: </label>
+          <input type="text" value={description} onChange={e => setDescription(e.target.value)} />
+          {/* <label>Days until expiry: </label>
+          <input type="text" value={daysUntilExpiry} onChange={e => setDaysUntilExpiry(e.target.value)} /> */}
 
-            <label>Product name: </label>
-            <input type="text" value={name} onChange={e => setName(e.target.value)} />
-
-
-            <div className="form-submit-button">
-                <button type='submit'>Submit changes</button>
-            </div>
+          <div className="form-submit-button">
+            <button type='submit'>Submit changes</button>
+          </div>
         </form>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DatePicker']}>
-        <DatePicker value={value} onChange={(newValue) => setValue(newValue)} />
-      </DemoContainer>
-    </LocalizationProvider>
-        
-    </div>
-</>
+          <DemoContainer components={['DatePicker']}>
+            <DatePicker value={dateOpened} onChange={(newValue: any) => setDateOpened(newValue)} />
+          </DemoContainer>
+        </LocalizationProvider>
+
+      </div>
+    </>
 
   )
 }

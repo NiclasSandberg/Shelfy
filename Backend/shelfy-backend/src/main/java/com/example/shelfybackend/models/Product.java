@@ -22,7 +22,9 @@ public class Product {
     @Temporal(TemporalType.DATE)
     private Date dateOpened;
 
-    private int daysUntilExpiry;
+    @Temporal(TemporalType.DATE)
+    private Date expiryDate;
+
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = true)
