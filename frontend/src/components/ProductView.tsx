@@ -23,9 +23,11 @@ const ProductView = () => {
 
 
     return (
+        
         <>
             <div>{product?.name}</div>
-            {product?.id}
+            {product?.id}<br/>
+            {product?.description} 
         </>
     )
 }

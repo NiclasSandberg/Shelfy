@@ -3,6 +3,6 @@ export interface IProduct {
     name: string;
     description: string;
     dateOpened: any;
-    expiryDate: Date;
+    expiryDate: any;
     category: string;
 }
