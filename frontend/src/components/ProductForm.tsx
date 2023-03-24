@@ -16,48 +16,58 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
 
   const [name, setName] = useState<string>(product.name || "");
   const [description, setDescription] = useState<string>(product.description || "");
-  const [dateOpened, setDateOpened] = useState<Dayjs | null>(null);
-  const [expiryDate, setExpiryDate] = useState<Dayjs | null>(null);
+  const [dateOpened, setDateOpened] = useState<Date | null>(null);
+  const [expiryDate, setExpiryDate] = useState<Date | null>(null);
   // const [daysUntilExpiry, setDaysUntilExpiry] = useState<string>(product.daysUntilExpiry || "");
   const [category, setCategory] = useState<string>(product.category || "");
-  const [months, setMonths] = useState("");
+  const [months, setMonths] = useState<string>("");
 
+  
+  //expiryDate = months + dateOpened
+  const calculateExpiryDate = () => {
+  
+  console.log(dateOpened);
+  //console.log(new Date(dateOpened?.getMilliseconds + ((1000 * 60 * 60 * 24)*(parseInt(months) * 30))));
+  // return new Date(dateOpened.getTime() + ((1000 * 60 * 60 * 24)*(parseInt(months) * 30)));
+  //return new Date(dateOpened.getTime() + ((1000 * 60 * 60 * 24)*(parseInt(months) * 30)));;
+  return null;
+  }
 
   const onFormSubmit = async (e: any) => {
     e.preventDefault();
+    setExpiryDate(calculateExpiryDate());
 
     const updatedProduct: IProduct = { ...product, name, description, dateOpened, expiryDate, category } as IProduct;
     onSubmit(updatedProduct);
 
   }
-  const handleChange = (event: SelectChangeEvent) => {
-    setMonths(event.target.value);
-  };
 
-  //expiryDate = months + dateOpened
+
   return (
     <>
       <div className="form-box">
         <form onSubmit={onFormSubmit} className="product-form">
           <label>Product name: </label>
-          <input type="text" value={name} onChange={e => setName(e.target.value)} />
+          <input type="text" value={name} onChange={e => setName(e.target.value)} /><br />
           <label>Description: </label>
-          <input type="text" value={description} onChange={e => setDescription(e.target.value)} />
+          <input type="text" value={description} onChange={e => setDescription(e.target.value)} /><br />
           {/* <label>Days until expiry: </label>
           <input type="text" value={daysUntilExpiry} onChange={e => setDaysUntilExpiry(e.target.value)} /> */}
           <label>How many months is this product good for? </label>
-          <input type="text" value={months} onChange={e => setMonths(e.target.value)} />
-
+          <input type="number" value={months} onChange={e => setMonths(e.target.value)} /> <br />
+          
+          <label>Set opening date </label><br />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+         
+          <DemoContainer components={['DatePicker']}>
+            <DatePicker value={dateOpened} onChange={(newValue: any) => setDateOpened(newValue)} />
+          </DemoContainer>
+        </LocalizationProvider>
 
           <div className="form-submit-button">
             <button type='submit'>Submit changes</button>
           </div>
         </form>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DemoContainer components={['DatePicker']}>
-            <DatePicker value={dateOpened} onChange={(newValue: any) => setDateOpened(newValue)} />
-          </DemoContainer>
-        </LocalizationProvider>
 
       </div>
     </>
@@ -66,3 +76,7 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
 }
 
 export default ProductForm
+
+function valueOf(months: string) {
+  throw new Error('Function not implemented.');
+}

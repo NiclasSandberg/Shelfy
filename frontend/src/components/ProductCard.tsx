@@ -9,10 +9,10 @@ interface ProductCardAttrs {
 
 const ProductCard = ({ product }: ProductCardAttrs) => {
 
-
+/*
   function datediff(date:Date) {
     let d1 = date;
-    let d2 = now = new Date();
+    let d2= now = new Date();
     if (d2.getTime() < d1.getTime()) {
       d1 = d2;
       d2 = date;
@@ -42,25 +42,20 @@ const ProductCard = ({ product }: ProductCardAttrs) => {
     if (months > 0) return months + ' months' + (weeks > 0 ? ' and ' + weeks + ' weeks' : '');
     if (weeks > 0) return weeks + ' weeks' + (days > 0 ? ' and ' + days + ' days' : '');
     return days + ' days';
- }
+ }*/
 
   const today = new Date();
+
   const expiryDate = new Date(product.expiryDate);
   const productOpenedAt = new Date(product.dateOpened);
 
   const shelflifeLeftFromTodayInMs = expiryDate.getTime() - today.getTime();
   const fullShelflifeInMs = expiryDate.getTime() - productOpenedAt.getTime();
-  console.log(fullShelflifeInMs);
-  const percentageToShow = Math.ceil(100 - (shelflifeLeftFromTodayInMs / (fullShelflifeInMs / 100)));
-  console.log("percentage to show: "+percentageToShow)
+  const percentageToShow = 100 - (shelflifeLeftFromTodayInMs / (fullShelflifeInMs / 100));
 
   let daysUntilExpireFromToday = Math.floor(shelflifeLeftFromTodayInMs / (1000 * 60 * 60 * 24));
   let months = Math.floor(daysUntilExpireFromToday / 30);
-  let daysAfterMonthsSubstraction = daysUntilExpireFromToday % months;
-  console.log("remainder days (modulo)" + daysAfterMonthsSubstraction)
-
-  console.log("difference in days: " + Math.ceil(shelflifeLeftFromTodayInMs / (1000 * 60 * 60 * 24)))
-  console.log("months left: " + months);
+  let daysAfterMonthsSubstraction = daysUntilExpireFromToday % 30;
 
 
 
@@ -72,12 +67,12 @@ const ProductCard = ({ product }: ProductCardAttrs) => {
           {product.dateOpened} <br />
           {product.expiryDate}<br />
  
-          {datediff(product.expiryDate)}
+          {/*datediff(product.expiryDate)*/}
           
-{/* 
-          {daysUntilExpireFromToday < 30 ?
+{ 
+          daysUntilExpireFromToday < 30 ?
           "it's still good for " + daysUntilExpireFromToday + " days" :
-          "its still good for " + months + " months and " + daysAfterMonthsSubstraction + " days"} */}
+          "its still good for " + months + " months and " + daysAfterMonthsSubstraction + " days"}
 
           <CircularProgress key={product.name} size="lg" determinate value={percentageToShow > 95 && percentageToShow < 100 ? 92 : percentageToShow }>
             {daysUntilExpireFromToday < 30 ? daysUntilExpireFromToday  + " D" : months + " M"}
