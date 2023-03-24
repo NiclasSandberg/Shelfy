@@ -1,11 +1,9 @@
 package com.example.shelfybackend;
 
+import com.example.shelfybackend.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +21,18 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
+    @GetMapping("/{id}")
+    ResponseEntity<Product> getArticleById(@PathVariable String id){
+        Product product = service.getProductById(id);
+        return ResponseEntity.ok(product);
+    }
+
+    @PostMapping
+    ResponseEntity<Product> createProduct(@RequestBody Product product){
+        Product newProduct = service.saveProduct(product);
+
+        return ResponseEntity.ok(newProduct);
+
+    }
 
 }

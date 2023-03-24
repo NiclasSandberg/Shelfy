@@ -1,33 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { getProducts } from './api';
-import { IProduct } from './interfaces';
-import ProductCard from './components/ProductCard';
-import CircularProgress from '@mui/joy/CircularProgress';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Dayjs } from 'dayjs';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-
+import './css/App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ProductList from './components/ProductList';
+import ProductView from './components/ProductView';
+import CreateProduct from './components/CreateProduct';
 
 function App() {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [months, setMonths] = useState("");
-  const [value, setValue] = React.useState<Dayjs | null>(null);
   
   useEffect(() => {
     getData();
-  }, [value]) 
+  }, [months]) 
 
   const getData = async () => {
     const products = await getProducts();
-   
+    console.log({products});
     setProducts(products);
   }
   
@@ -35,7 +22,6 @@ function App() {
     setMonths(event.target.value);
   };
 
-  
   
   return (
     <>
@@ -65,15 +51,13 @@ function App() {
           <MenuItem value={12}>12M</MenuItem>
         </Select>
       </FormControl>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DatePicker']}>
-        <DatePicker value={value} onChange={(newValue) => setValue(newValue)} />
-      </DemoContainer>
-    </LocalizationProvider>
-    
+     {/*<LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DatePicker />
+    </LocalizationProvider>*/}
+    {months}M
     </div>
-    {value != null ? value.toString()  : null}
     </>
+
   );
 }
 
