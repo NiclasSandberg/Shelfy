@@ -1,11 +1,9 @@
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
-import { title } from 'process';
-import React, { useState } from 'react'
+import { useState } from 'react';
 import { IProduct } from '../interfaces';
-import { Dayjs } from 'dayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { SelectChangeEvent } from '@mui/material';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
 interface ProductFormAttrs {
   product: Partial<IProduct>;
@@ -16,53 +14,48 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
 
   const [name, setName] = useState<string>(product.name || "");
   const [description, setDescription] = useState<string>(product.description || "");
-  const [dateOpened, setDateOpened] = useState<Date | null>(null);
-  const [expiryDate, setExpiryDate] = useState<Date | null>(null);
-  // const [daysUntilExpiry, setDaysUntilExpiry] = useState<string>(product.daysUntilExpiry || "");
-  const [category, setCategory] = useState<string>(product.category || "");
-  const [months, setMonths] = useState<string>("");
+  const [dateOpened, setDateOpened] = useState<Dayjs>(dayjs(product.dateOpened || new Date()));
+  // const [category, setCategory] = useState<string>(product.categoryId || "");
+  const [months, setMonths] = useState<string>("0");
 
-  
-  //expiryDate = months + dateOpened
+
+
   const calculateExpiryDate = () => {
-  
-  console.log(dateOpened);
-  //console.log(new Date(dateOpened?.getMilliseconds + ((1000 * 60 * 60 * 24)*(parseInt(months) * 30))));
-  // return new Date(dateOpened.getTime() + ((1000 * 60 * 60 * 24)*(parseInt(months) * 30)));
-  //return new Date(dateOpened.getTime() + ((1000 * 60 * 60 * 24)*(parseInt(months) * 30)));;
-  return null;
+    const newDate: Date = structuredClone(dateOpened.toDate())
+    newDate.setMonth(newDate.getMonth() + +months)
+    return newDate;
   }
 
   const onFormSubmit = async (e: any) => {
     e.preventDefault();
-    setExpiryDate(calculateExpiryDate());
-
-    const updatedProduct: IProduct = { ...product, name, description, dateOpened, expiryDate, category } as IProduct;
+    const expiryDate = calculateExpiryDate();
+    console.log("expiry date ", expiryDate)
+    const updatedProduct: IProduct = { ...product, name, description, dateOpened, expiryDate, category: { categoryId: 1 } } as IProduct;
     onSubmit(updatedProduct);
-
   }
 
-
+  console.log(AdapterDayjs, dateOpened)
   return (
     <>
       <div className="form-box">
         <form onSubmit={onFormSubmit} className="product-form">
           <label>Product name: </label>
           <input type="text" value={name} onChange={e => setName(e.target.value)} /><br />
+
           <label>Description: </label>
           <input type="text" value={description} onChange={e => setDescription(e.target.value)} /><br />
-          {/* <label>Days until expiry: </label>
-          <input type="text" value={daysUntilExpiry} onChange={e => setDaysUntilExpiry(e.target.value)} /> */}
+
           <label>How many months is this product good for? </label>
           <input type="number" value={months} onChange={e => setMonths(e.target.value)} /> <br />
-          
-          <label>Set opening date </label><br />
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-         
-          <DemoContainer components={['DatePicker']}>
-            <DatePicker value={dateOpened} onChange={(newValue: any) => setDateOpened(newValue)} />
-          </DemoContainer>
-        </LocalizationProvider>
+
+          <label>Set opening date: </label><br />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={['DatePicker']}>
+              <DatePicker value={dateOpened} onChange={(newValue: any) => setDateOpened(newValue)} />
+            </DemoContainer>
+          </LocalizationProvider>
+
+
 
           <div className="form-submit-button">
             <button type='submit'>Submit changes</button>
@@ -70,13 +63,11 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
         </form>
 
       </div>
+
+      {/* include text and little picture about period after opening date symbol here  */}
     </>
 
   )
 }
 
 export default ProductForm
-
-function valueOf(months: string) {
-  throw new Error('Function not implemented.');
-}
