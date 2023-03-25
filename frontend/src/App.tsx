@@ -5,6 +5,7 @@ import ProductView from './components/ProductView';
 import CreateProduct from './components/CreateProduct';
 
 function App() {
+  return(
   <>
       <BrowserRouter>
 
@@ -19,7 +20,7 @@ function App() {
 
 
     </>
-
+  )
 }
 
 export default App;
