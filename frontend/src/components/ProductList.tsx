@@ -26,18 +26,17 @@ const ProductList = () => {
     // };
 
     return (
-        <>  
-
-            <h1>Shelfy</h1>
+        <>
+            <h1>Shelfys</h1>
             {products.length === 0 && "Loading ..."}
             {products?.map(prod => <ProductCard product={prod} key={prod.id} />)}
             <img src={cream} style={{width:"150px"}}alt="" />
             <img src={makeup} style={{width:"150px"}}alt="" />
             <Link to={'/products/new'}><button>Add new product</button></Link>
-            
 
-         
-            
+
+
+
         </>
     );
 }

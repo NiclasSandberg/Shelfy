@@ -23,6 +23,7 @@ public class ProductController {
 
     @GetMapping("/{id}")
     ResponseEntity<Product> getArticleById(@PathVariable String id){
+        // add message if product not found
         Product product = service.getProductById(id);
         return ResponseEntity.ok(product);
     }
@@ -34,5 +35,24 @@ public class ProductController {
         return ResponseEntity.ok(newProduct);
 
     }
+    //@PutMapping
+    @PutMapping("/{id}")
+    ResponseEntity<Product> updateProduct(@RequestBody Product updatedProduct, @PathVariable String id){
+        if (service.getProductById(id) == null) {
+            return ResponseEntity.notFound().build();
+        }
+        Product newProduct = service.updateProduct(updatedProduct);
+
+        return ResponseEntity.ok(newProduct);
+    }
+
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<Void> deleteProduct(@PathVariable String id){
+        service.deleteProductById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
 
 }

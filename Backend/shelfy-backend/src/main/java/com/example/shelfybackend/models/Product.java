@@ -25,6 +25,7 @@ public class Product {
     @Temporal(TemporalType.DATE)
     private Date expiryDate;
 
+    private int periodAfterOpening;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = true)

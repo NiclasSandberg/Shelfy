@@ -14,13 +14,7 @@ const CreateProduct = () => {
     const createdProduct: IProduct = await fetch("http://localhost:8080/products",
       {
         method: "POST",
-        body: JSON.stringify({
-          name: newProduct.name,
-          description: newProduct.description,
-          dateOpened: newProduct.dateOpened,
-
-
-        }),
+        body: JSON.stringify(newProduct),
         headers: {
           "Content-Type": "application/json"
         }

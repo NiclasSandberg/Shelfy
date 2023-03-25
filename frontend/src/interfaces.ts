@@ -4,5 +4,11 @@ export interface IProduct {
     description: string;
     dateOpened: any;
     expiryDate: any;
-    category: string;
+    periodAfterOpening: string;
+    category: ICategory;
+}
+
+export interface ICategory {
+    categoryId: number;
+    categoryName?: string;
 }
