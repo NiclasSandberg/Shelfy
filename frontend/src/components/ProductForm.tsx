@@ -15,8 +15,8 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
   const [name, setName] = useState<string>(product.name || "");
   const [description, setDescription] = useState<string>(product.description || "");
   const [dateOpened, setDateOpened] = useState<Dayjs>(dayjs(product.dateOpened || new Date()));
-  // const [category, setCategory] = useState<string>(product.categoryId || "");
   const [months, setMonths] = useState<string>("0");
+  // const [category, setCategory] = useState<string>(product.categoryId || "");
 
 
 

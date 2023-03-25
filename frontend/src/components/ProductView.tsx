@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { IProduct } from '../interfaces';
 
 const ProductView = () => {
@@ -23,11 +23,16 @@ const ProductView = () => {
 
 
     return (
-        
+
         <>
             <div>{product?.name}</div>
-            {product?.id}<br/>
-            {product?.description} 
+            {product?.id}<br />
+            {product?.description}
+
+            <Link to={'/products/edit'}><button>Edit product</button></Link>
+            <button>Delete product</button>
+
+
         </>
     )
 }
