@@ -24,4 +24,12 @@ public class ProductService {
     public Product saveProduct(Product product) {
         return repo.saveNewProduct(product);
     }
+
+    public Product updateProduct(Product updatedProduct) {
+        return repo.saveNewProduct(updatedProduct);
+    }
+
+    public void deleteProductById(String id) {
+        repo.deleteProduct(id);
+    }
 }

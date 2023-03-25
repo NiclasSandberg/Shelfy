@@ -25,15 +25,15 @@ const ProductList = () => {
 
     return (
         <>
-            <h1>YO!!</h1>
+            <h1>Shelfys</h1>
             {products.length === 0 && "Loading ..."}
             {products?.map(prod => <ProductCard product={prod} key={prod.id} />)}
 
             <Link to={'/products/new'}><button>Add new product</button></Link>
-            
 
-         
-            
+
+
+
         </>
     );
 }

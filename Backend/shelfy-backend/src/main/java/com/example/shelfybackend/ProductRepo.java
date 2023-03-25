@@ -25,4 +25,8 @@ public class ProductRepo {
     public Product saveNewProduct(Product product){
         return repo.save(product);
     }
+
+    public void deleteProduct(String id) {
+        repo.deleteById(id);
+    }
 }

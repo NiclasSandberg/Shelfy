@@ -1,17 +1,26 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
 import { IProduct } from '../interfaces';
 import ProductForm from './ProductForm';
 
 const EditProduct = () => {
+  const { productId } = useParams();
+  const [product, setProduct] = useState<IProduct>();
+
   const navigate = useNavigate();
 
+  const getProductById = async () => {
+    const response: Response = await fetch(
+      "http://localhost:8080/products/" + productId
+    );
+    const data: IProduct = await response.json();
+
+    setProduct(data);
+  };
+
+
   const handleEditedProduct = async (editedProduct: IProduct) => {
-    console.log("entered handleNewProduct name: " + editedProduct.name)
-
-
-
-    const createdProduct: IProduct = await fetch("http://localhost:8080/products",
+    const createdProduct: IProduct = await fetch("http://localhost:8080/products/" + productId,
       {
         method: "PUT",
         body: JSON.stringify(editedProduct),
@@ -21,11 +30,15 @@ const EditProduct = () => {
       }).then(a => a.json()).catch(error => { console.log(error) });
 
 
-    navigate("/products/" + createdProduct.id);
+    navigate("/products/" + productId);
   }
+  useEffect(() => {
+    getProductById();
+  }, []);
+
   return (
     <>
-      <ProductForm product={{}} onSubmit={handleEditedProduct} />
+      {product && <ProductForm product={product} onSubmit={handleEditedProduct} />}
     </>
   )
 }

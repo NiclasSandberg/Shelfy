@@ -29,8 +29,7 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
   const onFormSubmit = async (e: any) => {
     e.preventDefault();
     const expiryDate = calculateExpiryDate();
-    console.log("expiry date ", expiryDate)
-    const updatedProduct: IProduct = { ...product, name, description, dateOpened, expiryDate, category: { categoryId: 1 } } as IProduct;
+    const updatedProduct: IProduct = { ...product, name, description, dateOpened, expiryDate, months, category: { categoryId: 1 } } as IProduct;
     onSubmit(updatedProduct);
   }
 
