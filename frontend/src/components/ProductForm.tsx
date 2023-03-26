@@ -6,6 +6,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
 import { Link } from 'react-router-dom';
 import { Button, Grid, TextField } from '@mui/material';
+import { Box } from '@mui/system';
 
 interface ProductFormAttrs {
   product: Partial<IProduct>;
@@ -29,20 +30,20 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
   const onFormSubmit = async (event: any) => {
     event.preventDefault();
     const expiryDate = calculateExpiryDate();
-    const updatedProduct: IProduct = { ...product, name, description, dateOpened, expiryDate, months, category: { categoryId: 1 } } as IProduct;
+    const updatedProduct: IProduct = { ...product, name, description, dateOpened, expiryDate, periodAfterOpening: months, category: { categoryId: 1 } } satisfies IProduct;
     onSubmit(updatedProduct);
   }
-
-  console.log(AdapterDayjs, dateOpened)
 
   return (
     <>
       its not finished yet! :D
-      <form onSubmit={onFormSubmit}>
-        <Grid container spacing={1}>
+
+      <Box component="form" onSubmit={onFormSubmit}>
+        <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
               label="Product name"
+              fullWidth
               value={name}
               variant="filled"
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,8 +55,9 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
             <TextField
               label="Description"
               value={description}
+              fullWidth
               multiline
-              rows={4}
+              minRows={2}
               variant="filled"
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setDescription(event.target.value);
@@ -66,6 +68,7 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
             <TextField
               label="PAO in months"
               type="number"
+              fullWidth
               InputLabelProps={{
                 shrink: true,
               }}
@@ -94,7 +97,7 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
           </Grid>
 
         </Grid>
-      </form>
+      </Box>
     </>
   )
 }
