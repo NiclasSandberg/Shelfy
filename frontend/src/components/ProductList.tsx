@@ -19,9 +19,6 @@ const ProductList = () => {
         setProducts(data);
         console.log("THE DATA IS HERE " + data)
     }
-    // const handler = () => {
-    //     console.log("whatever")
-    // };
 
     return (
         <>

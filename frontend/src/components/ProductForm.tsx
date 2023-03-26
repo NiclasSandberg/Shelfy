@@ -54,6 +54,8 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
             </DemoContainer>
           </LocalizationProvider>
 
+          The current expiry date is: {product.expiryDate}
+
 
 
           <div className="form-submit-button">
