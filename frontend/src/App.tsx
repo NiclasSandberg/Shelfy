@@ -10,9 +10,9 @@ import {
   Typography,
   BottomNavigation,
   BottomNavigationAction,
-  createTheme,
   ThemeProvider
 } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 import { Box } from "@mui/system";
 
 const theme = createTheme({
@@ -21,7 +21,7 @@ const theme = createTheme({
     // mode: "dark",
     primary: {
       main: "#333",
-      dark: "#ccc"
+      dark: "#ccc",
     },
     secondary: {
       main: "#ddd",
