@@ -38,7 +38,7 @@ const ProductView = () => {
             <div>
                 {product?.name} <br />
                 {product?.description} <br />
-                Category: {product?.category.categoryName}
+                Category: {product?.category.name}
                 <br />
                 Date opened: {product?.dateOpened}
                 <br />

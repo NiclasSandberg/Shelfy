@@ -15,9 +15,9 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue
-    private Long categoryId;
+    private Long id;
 
-    private String categoryName;
+    private String name;
 
     @OneToMany(mappedBy = "category")
     @JsonIgnore
