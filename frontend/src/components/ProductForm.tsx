@@ -4,6 +4,8 @@ import { IProduct } from '../interfaces';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
+import { Link } from 'react-router-dom';
+import { Box, Button, Grid, TextField } from '@mui/material';
 
 interface ProductFormAttrs {
   product: Partial<IProduct>;
@@ -17,8 +19,6 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
   const [dateOpened, setDateOpened] = useState<Dayjs>(dayjs(product.dateOpened || new Date()));
   const [months, setMonths] = useState<string>("0");
   // const [category, setCategory] = useState<string>(product.categoryId || "");
-
-
 
   const calculateExpiryDate = () => {
     const newDate: Date = structuredClone(dateOpened.toDate())
@@ -34,41 +34,53 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
   }
 
   console.log(AdapterDayjs, dateOpened)
+
   return (
     <>
-      <div className="form-box">
-        <form onSubmit={onFormSubmit} className="product-form">
-          <label>Product name: </label>
-          <input type="text" value={name} onChange={e => setName(e.target.value)} /><br />
-
-          <label>Description: </label>
-          <input type="text" value={description} onChange={e => setDescription(e.target.value)} /><br />
-
-          <label>How many months is this product good for? </label>
-          <input type="number" value={months} onChange={e => setMonths(e.target.value)} /> <br />
-
-          <label>Set opening date: </label><br />
+      its not finished yet! :D
+      <Grid container>
+        <Grid item>
+          <TextField
+            label="Product name"
+            defaultValue={name}
+            variant="filled"
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            label="Description"
+            defaultValue={description}
+            multiline
+            rows={4}
+            variant="filled"
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            label="PAO in months"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="filled"
+            defaultValue={months}
+          />
+        </Grid>
+        <Grid item>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={['DatePicker']}>
-              <DatePicker value={dateOpened} onChange={(newValue: any) => setDateOpened(newValue)} />
+              <DatePicker value={dateOpened} label="Set opening date" onChange={(newValue: any) => setDateOpened(newValue)} />
             </DemoContainer>
           </LocalizationProvider>
+        </Grid>
+        <Grid item>
 
-          The current expiry date is: {product.expiryDate}
-
-
-
-          <div className="form-submit-button">
-            <button type='submit'>Submit changes</button>
-          </div>
-        </form>
-
-      </div>
-
-      {/* include text and little picture about period after opening date symbol here  */}
+        </Grid>
+        <Button type='submit'>Save</Button>
+      </Grid>
     </>
-
   )
 }
+
 
 export default ProductForm
