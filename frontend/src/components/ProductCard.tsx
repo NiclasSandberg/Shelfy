@@ -2,8 +2,10 @@ import React from "react";
 import { IProduct } from "../interfaces";
 import { Link } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
-
 import { CircularProgressWithLabel } from "./CircularProgressWithLabel";
+//import joy circularprogress
+import '../css/ProductCard.css';
+import tube from '../images/cream-tube-2.png'
 
 interface ProductCardAttrs {
   product: IProduct;
@@ -35,20 +37,25 @@ const ProductCard = ({ product }: ProductCardAttrs) => {
 
   return (
     <>
-      <Link to={"/products/" + product.id}>
-        <div>
-          {product.name} <br />
-          {product.dateOpened} <br />
-          {product.expiryDate}
-          <br />
-          {daysUntilExpireFromToday < 30
+    <div className="card-container">
+      <Link to={"/products/" + product.id} style={{ textDecoration: 'none', color:"black"}}>
+        <div className="card-header">
+          <h3>{product.name}</h3>
+          <div className="product-icon-container">
+          <img src={tube} alt="" className="product-icon" />
+          </div>
+          </div>
+          <div className="card-footer">
+          <p>{daysUntilExpireFromToday < 30
             ? "it's still good for " + daysUntilExpireFromToday + " days"
             : "its still good for " +
             months +
             " months and " +
             daysAfterMonthsSubstraction +
             " days"}
+            </p>
           <CircularProgressWithLabel
+          
             key={product.name}
             size="lg"
             variant="determinate"
@@ -58,12 +65,12 @@ const ProductCard = ({ product }: ProductCardAttrs) => {
               ? daysUntilExpireFromToday + " D"
               : months + " M"}
           />
-
-          <br />
-          <br />
-          <br />
+         </div>
+          </Link>
         </div>
-      </Link>
+         
+      
+      
     </>
   );
 };
