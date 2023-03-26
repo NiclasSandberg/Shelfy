@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { IProduct } from '../interfaces';
 import ProductCard from './ProductCard';
 import ProductForm from './ProductForm';
+import { Button } from "@mui/material";
 
 const ProductList = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
@@ -22,14 +23,11 @@ const ProductList = () => {
 
     return (
         <>
-            <h1>Shelfys</h1>
+
             {products.length === 0 && "Loading ..."}
             {products?.map(prod => <ProductCard product={prod} key={prod.id} />)}
 
-            <Link to={'/products/new'}><button>Add new product</button></Link>
-
-
-
+            <Link to={'/products/new'}><Button color="primary" variant="contained">Add new product</Button></Link>
 
         </>
     );

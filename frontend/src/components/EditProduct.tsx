@@ -9,13 +9,13 @@ const EditProduct = () => {
 
   const navigate = useNavigate();
 
-  const getProductById = async () => {
+  const getProductById = async (): Promise<IProduct> => {
     const response: Response = await fetch(
       "http://localhost:8080/products/" + productId
     );
     const data: IProduct = await response.json();
 
-    setProduct(data);
+    return data;
   };
 
 
@@ -33,7 +33,7 @@ const EditProduct = () => {
     navigate("/products/" + productId);
   }
   useEffect(() => {
-    getProductById();
+    getProductById().then(setProduct);
   }, []);
 
   return (
