@@ -5,7 +5,7 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
 import { Link } from 'react-router-dom';
-import { Box, Button, Grid, TextField } from '@mui/material';
+import { Button, Grid, TextField } from '@mui/material';
 
 interface ProductFormAttrs {
   product: Partial<IProduct>;
@@ -26,8 +26,8 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
     return newDate;
   }
 
-  const onFormSubmit = async (e: any) => {
-    e.preventDefault();
+  const onFormSubmit = async (event: any) => {
+    event.preventDefault();
     const expiryDate = calculateExpiryDate();
     const updatedProduct: IProduct = { ...product, name, description, dateOpened, expiryDate, months, category: { categoryId: 1 } } as IProduct;
     onSubmit(updatedProduct);
@@ -38,46 +38,63 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
   return (
     <>
       its not finished yet! :D
-      <Grid container>
-        <Grid item>
-          <TextField
-            label="Product name"
-            defaultValue={name}
-            variant="filled"
-          />
-        </Grid>
-        <Grid item>
-          <TextField
-            label="Description"
-            defaultValue={description}
-            multiline
-            rows={4}
-            variant="filled"
-          />
-        </Grid>
-        <Grid item>
-          <TextField
-            label="PAO in months"
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="filled"
-            defaultValue={months}
-          />
-        </Grid>
-        <Grid item>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={['DatePicker']}>
-              <DatePicker value={dateOpened} label="Set opening date" onChange={(newValue: any) => setDateOpened(newValue)} />
-            </DemoContainer>
-          </LocalizationProvider>
-        </Grid>
-        <Grid item>
+      <form onSubmit={onFormSubmit}>
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <TextField
+              label="Product name"
+              value={name}
+              variant="filled"
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setName(event.target.value);
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Description"
+              value={description}
+              multiline
+              rows={4}
+              variant="filled"
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setDescription(event.target.value);
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="PAO in months"
+              type="number"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              variant="filled"
+              value={months}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setMonths(event.target.value);
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={['DatePicker']}>
+                <DatePicker value={dateOpened} label="Set opening date" onChange={(newValue: any) => setDateOpened(newValue)} />
+              </DemoContainer>
+            </LocalizationProvider>
+          </Grid>
+          <Grid item xs={12}>
+            <Button type='submit'>Save</Button>
+          </Grid>
+          <Grid item xs={12}>
+
+            <Link to={'/'}>
+              <button>🏠</button>
+            </Link>
+          </Grid>
 
         </Grid>
-        <Button type='submit'>Save</Button>
-      </Grid>
+      </form>
     </>
   )
 }
