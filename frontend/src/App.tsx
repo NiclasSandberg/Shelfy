@@ -14,19 +14,20 @@ import {
 } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { Box } from "@mui/system";
+import logo from './images/shelfy-logo.png'
 
 const theme = createTheme({
-
   palette: {
     // mode: "dark",
     primary: {
-      main: "#333",
+      main: "#D9D9D9",
       dark: "#ccc",
     },
     secondary: {
       main: "#ddd",
       dark: "#333"
     }
+
   },
   components: {
     MuiButton: {
@@ -48,25 +49,24 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Box display={"flex"} flexDirection="column">
           <BrowserRouter>
-            <AppBar>
-              <Toolbar>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                  Shelfy
-                </Typography>
-              </Toolbar>
-            </AppBar>
+            <header>
+              <img src={logo} alt="shelfy-logo" />
+            </header>
+            <div className="main-wrapper">
 
-            <Box component="main" sx={{ pt: 8 }}>
-              <Routes>
-                <Route path="/" element={<ProductList />} />
-                <Route path="/products/:productId" element={<ProductView />} />
-                <Route path="/products/new" element={<CreateProduct />} />
-                <Route
-                  path="/products/:productId/edit"
-                  element={<EditProduct />}
-                />
-              </Routes>
-            </Box>
+              <Box component="main" sx={{ pt: 8 }}>
+                <Routes>
+                  <Route path="/" element={<ProductList />} />
+                  <Route path="/products/:productId" element={<ProductView />} />
+                  <Route path="/products/new" element={<CreateProduct />} />
+                  <Route
+                    path="/products/:productId/edit"
+                    element={<EditProduct />}
+                  />
+                </Routes>
+
+              </Box>
+            </div>
           </BrowserRouter>
         </Box>
       </ThemeProvider>

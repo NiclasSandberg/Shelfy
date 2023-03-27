@@ -26,8 +26,8 @@ const ProductList = () => {
                 <ProductCard product={prod} key={prod.id} />
             ))}
 
-            <Link to={"/products/new"}>
-                <Button color="secondary" variant="contained">
+            <Link to={"/products/new"} style={{ textDecoration: 'none', color: "black" }}>
+                <Button color="primary" variant="contained">
                     add new product
                 </Button>
             </Link>

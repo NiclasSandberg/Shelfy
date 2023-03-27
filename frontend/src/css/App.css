@@ -1,3 +1,17 @@
 .App {
   text-align: center;
 }
+
+header {
+  display: flex;
+  justify-content: center;
+}
+
+header img {
+  width: 20vw;
+}
+
+.main-wrapper {
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+}
