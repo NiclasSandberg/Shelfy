@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { IProduct } from "../interfaces";
@@ -51,6 +52,10 @@ const ProductView = () => {
                 <button>Edit product</button>
             </Link>
             <button onClick={deleteProductById}>Delete product</button>
+
+            <Link to={"/"}>
+                <button>🏠</button>
+            </Link>
         </>
     );
 };

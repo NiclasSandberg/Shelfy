@@ -37,40 +37,39 @@ const ProductCard = ({ product }: ProductCardAttrs) => {
 
   return (
     <>
-    <div className="card-container">
-      <Link to={"/products/" + product.id} style={{ textDecoration: 'none', color:"black"}}>
-        <div className="card-header">
-          <h3>{product.name}</h3>
-          <div className="product-icon-container">
-          <img src={tube} alt="" className="product-icon" />
-          </div>
+      <div className="card-container">
+        <Link to={"/products/" + product.id} style={{ textDecoration: 'none', color: "black" }}>
+          <div className="card-header">
+            <h3>{product.name}</h3>
+            <div className="product-icon-container">
+              <img src={tube} alt="" className="product-icon" />
+            </div>
           </div>
           <div className="card-footer">
-          <p>{daysUntilExpireFromToday < 30
-            ? "it's still good for " + daysUntilExpireFromToday + " days"
-            : "its still good for " +
-            months +
-            " months and " +
-            daysAfterMonthsSubstraction +
-            " days"}
+            <p>{daysUntilExpireFromToday < 30
+              ? "still good for " + daysUntilExpireFromToday + " days"
+              : "still good for " +
+              months +
+              " months and " +
+              daysAfterMonthsSubstraction +
+              " days"}
             </p>
-          <CircularProgressWithLabel
-          
-            key={product.name}
-            size="lg"
-            variant="determinate"
-            value={progress}
-            sx={{ height: "5rem", width: "5rem" }}
-            label={daysUntilExpireFromToday < 30
-              ? daysUntilExpireFromToday + " D"
-              : months + " M"}
-          />
-         </div>
-          </Link>
-        </div>
-         
-      
-      
+            <CircularProgressWithLabel
+
+              key={product.name}
+              size="lg"
+              variant="determinate"
+              value={progress}
+              sx={{ height: "5rem", width: "5rem" }}
+              label={daysUntilExpireFromToday < 30
+                ? daysUntilExpireFromToday + " D"
+                : months + " M"}
+            />
+          </div>
+        </Link>
+      </div>
+
+
     </>
   );
 };

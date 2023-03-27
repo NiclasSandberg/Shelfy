@@ -15,6 +15,8 @@ import {
   FormControl,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import tube from '../images/cream-tube-2.png';
+import paoSymbol from '../images/pao_symbol.png'
 
 interface ProductFormAttrs {
   product: Partial<IProduct>;
@@ -41,10 +43,10 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
 
     // FAKE code: mock data, because backend endpoint is not yet implemented
     setCategories([
-      { id: 1, name: "makeup" },
-      { id: 2, name: "cream" },
-      { id: 3, name: "soap" },
-      { id: 4, name: "medicine" },
+      { id: 1, name: "Makeup" },
+      { id: 2, name: "Cream" },
+      { id: 3, name: "Renewables" },
+      { id: 4, name: "Medicine" },
     ]);
   }, []);
 
@@ -84,88 +86,109 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
 
   return (
     <>
-      its not finished yet! :D
-      <Box component="form" onSubmit={onFormSubmit}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TextField
-              label="Product name"
-              fullWidth
-              value={name}
-              variant="filled"
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setName(event.target.value);
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              label="Description"
-              value={description}
-              fullWidth
-              multiline
-              minRows={2}
-              variant="filled"
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setDescription(event.target.value);
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              label="PAO in months"
-              type="number"
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-              }}
-              variant="filled"
-              value={months}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setMonths(event.target.value);
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <FormControl fullWidth>
-              <InputLabel>Category</InputLabel>
-              <Select
-                value={categoryId}
+      <div className="card-container">
+
+
+        <Box component="form" onSubmit={onFormSubmit} sx={{ mt: 4, mb: 4 }}>
+          <Grid container spacing={4}>
+            <Grid item xs={6}>
+              <TextField
+                label="Product name"
+                fullWidth
+                value={name}
                 variant="filled"
-                label="Category"
-                onChange={(e) => setCategoryId(Number(e.target.value))}
-              >
-                <MenuItem value={0} disabled>
-                  Please select
-                </MenuItem>
-                {categories.map((c) => (
-                  <MenuItem value={c.id}>{c.name}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setName(event.target.value);
+                }}
+              />
+            </Grid>
+            <Grid item xs={6} container
+              direction="row"
+              alignItems="center"
+              justifyContent="flex-end">  <div className="product-icon-container">
+                <img src={tube} alt="" className="product-icon" />
+              </div></Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Description"
+                value={description}
+                fullWidth
+                multiline
+                minRows={2}
+                variant="filled"
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setDescription(event.target.value);
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl fullWidth>
+                <InputLabel>Category</InputLabel>
+                <Select
+                  value={categoryId}
+                  variant="filled"
+                  label="Category"
+                  onChange={(e) => setCategoryId(Number(e.target.value))}
+                >
+                  <MenuItem value={0} disabled>
+                    Please select
+                  </MenuItem>
+                  {categories.map((c) => (
+                    <MenuItem value={c.id}>{c.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                label="PAO in months"
+                type="number"
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                variant="filled"
+                value={months}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setMonths(event.target.value);
+                }}
+              />
+            </Grid>
+            <Grid item xs={6} container
+              direction="row"
+              alignItems="center"
+              justifyContent="flex-end">
+              <img src={paoSymbol} alt="" className="product-icon" />
+            </Grid>
+            <Grid item xs={12}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={["DatePicker"]}>
+                  <DatePicker
+                    value={dateOpened}
+                    sx={{ width: "100%" }}
+                    label="Opening date"
+                    onChange={(newValue: any) => setDateOpened(newValue)}
+                  />
+                </DemoContainer>
+              </LocalizationProvider>
+            </Grid>
+            <Grid item xs={12}>
+              This product expires: {product.expiryDate}
+            </Grid>
+            <Grid item xs={6}>
+              <Button type="submit" color="secondary" variant="contained">Save</Button>
+
+            </Grid>
+            <Grid item xs={6}>
+              <Link to={"/"}>
+                <Button variant="contained" color="secondary">🏠</Button>
+              </Link>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={["DatePicker"]}>
-                <DatePicker
-                  value={dateOpened}
-                  sx={{ width: "100%" }}
-                  label="Set opening date"
-                  onChange={(newValue: any) => setDateOpened(newValue)}
-                />
-              </DemoContainer>
-            </LocalizationProvider>
-          </Grid>
-          <Grid item xs={12}>
-            <Button type="submit" color="primary" variant="contained">Save</Button>
-          </Grid>
-          <Grid item xs={12}>
-            <Link to={"/"}>
-              <Button variant="contained" color="secondary">🏠</Button>
-            </Link>
-          </Grid>
-        </Grid>
-      </Box>
+        </Box>
+      </div>
+      ☝🏻 The PAO symbol—aka the “Period After Opening” symbol—can be found on all sorts of bathroom goods, like makeup, lotion, over the counter medicine, and toiletries. The symbol helps you identify how long a product is safe to use after its package has been opened for the first time.
+
     </>
   );
 };

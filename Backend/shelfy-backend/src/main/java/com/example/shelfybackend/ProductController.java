@@ -35,7 +35,7 @@ public class ProductController {
         return ResponseEntity.ok(newProduct);
 
     }
-    //@PutMapping
+    
     @PutMapping("/{id}")
     ResponseEntity<Product> updateProduct(@RequestBody Product updatedProduct, @PathVariable String id){
         if (service.getProductById(id) == null) {
@@ -45,7 +45,6 @@ public class ProductController {
 
         return ResponseEntity.ok(newProduct);
     }
-
 
     @DeleteMapping("/{id}")
     ResponseEntity<Void> deleteProduct(@PathVariable String id){

@@ -27,8 +27,8 @@ const ProductList = () => {
             ))}
 
             <Link to={"/products/new"}>
-                <Button color="primary" variant="contained">
-                    Add new product
+                <Button color="secondary" variant="contained">
+                    add new product
                 </Button>
             </Link>
         </>
