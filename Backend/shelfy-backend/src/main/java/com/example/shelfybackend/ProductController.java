@@ -1,5 +1,6 @@
 package com.example.shelfybackend;
 
+import com.example.shelfybackend.models.Category;
 import com.example.shelfybackend.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,12 @@ public class ProductController {
 
     @Autowired
     ProductService service;
+
+    @GetMapping("/categories")
+    ResponseEntity<List<Category>> getAllCategories() {
+        List<Category> categories = service.getAllCategories();
+        return ResponseEntity.ok(categories);
+    }
 
     @GetMapping
     ResponseEntity<List<Product>> getAllProducts() {

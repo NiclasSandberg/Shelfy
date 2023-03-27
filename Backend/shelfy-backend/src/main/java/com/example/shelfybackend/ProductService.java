@@ -1,5 +1,6 @@
 package com.example.shelfybackend;
 
+import com.example.shelfybackend.models.Category;
 import com.example.shelfybackend.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,9 @@ public class ProductService {
 
     public void deleteProductById(String id) {
         repo.deleteProduct(id);
+    }
+
+    public List<Category> getAllCategories() {
+        return repo.getAllCategories();
     }
 }

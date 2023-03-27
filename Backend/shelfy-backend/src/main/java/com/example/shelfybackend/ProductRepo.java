@@ -1,5 +1,6 @@
 package com.example.shelfybackend;
 
+import com.example.shelfybackend.models.Category;
 import com.example.shelfybackend.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,22 +12,29 @@ import java.util.Optional;
 public class ProductRepo {
 
     @Autowired
-    IProductRepo repo;
+    IProductRepo productRepo;
+
+    @Autowired
+    ICategoryRepo categoryRepo;
 
     public List<Product> getAllProducts(){
-        return (List<Product>) repo.findAll();
+        return (List<Product>) productRepo.findAll();
     }
 
     public Product getProductById(String id){
-        Optional<Product> byId = repo.findById(id);
+        Optional<Product> byId = productRepo.findById(id);
         return byId.orElse(null);
     }
 
     public Product saveNewProduct(Product product){
-        return repo.save(product);
+        return productRepo.save(product);
     }
 
     public void deleteProduct(String id) {
-        repo.deleteById(id);
+        productRepo.deleteById(id);
+    }
+
+    public List<Category> getAllCategories(){
+        return (List<Category>) categoryRepo.findAll();
     }
 }

@@ -23,5 +23,6 @@ public class Category {
     @JsonIgnore
     private List<Product> categoryProducts;
 
+    private String imageUrl;
 
 }

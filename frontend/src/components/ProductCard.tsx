@@ -1,11 +1,11 @@
-import React from "react";
-import { IProduct } from "../interfaces";
+import React, { useEffect, useState } from "react";
+import { ICategory, IProduct } from "../interfaces";
 import { Link } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import { CircularProgressWithLabel } from "./CircularProgressWithLabel";
 //import joy circularprogress
 import '../css/ProductCard.css';
-import tube from '../images/cream-tube-2.png'
+import makeup from '../images/category-images/skincare.png'
 
 interface ProductCardAttrs {
   product: IProduct;
@@ -35,14 +35,18 @@ const ProductCard = ({ product }: ProductCardAttrs) => {
       : Math.min(percentageToShow, 100);
 
 
+  console.log(product.category.imageUrl)
+
   return (
     <>
       <div className="card-container">
         <Link to={"/products/" + product.id} style={{ textDecoration: 'none', color: "black" }}>
           <div className="card-header">
             <h3>{product.name}</h3>
+
             <div className="product-icon-container">
-              <img src={tube} alt="" className="product-icon" />
+
+              <img src={makeup} alt="" className="product-icon" />
             </div>
           </div>
           <div className="card-footer">

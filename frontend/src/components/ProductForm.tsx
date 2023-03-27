@@ -15,7 +15,7 @@ import {
   FormControl,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import tube from '../images/cream-tube-2.png';
+
 import paoSymbol from '../images/pao_symbol.png'
 
 interface ProductFormAttrs {
@@ -39,21 +39,21 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
 
   useEffect(() => {
     // REAL code:
-    // getCategories().then(setCategories);
+    getCategories().then(setCategories);
 
     // FAKE code: mock data, because backend endpoint is not yet implemented
-    setCategories([
-      { id: 1, name: "Makeup" },
-      { id: 2, name: "Skincare" },
-      { id: 3, name: "Hair care" },
-      { id: 4, name: "Medicine" },
-      { id: 5, name: "Towels" },
-      { id: 6, name: "Miscellaneous" }
-    ]);
+    // setCategories([
+    //   { id: 1, name: "Makeup" },
+    //   { id: 2, name: "Skincare" },
+    //   { id: 3, name: "Hair care" },
+    //   { id: 4, name: "Medicine" },
+    //   { id: 5, name: "Towels" },
+    //   { id: 6, name: "Miscellaneous" }
+    // ]);
   }, []);
 
   const getCategories = async (): Promise<ICategory[]> => {
-    const response: Response = await fetch("http://localhost:8080/categories/");
+    const response: Response = await fetch("http://localhost:8080/products/categories/");
     const data: ICategory[] = await response.json();
 
     return data;
@@ -108,7 +108,7 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
               direction="row"
               alignItems="center"
               justifyContent="flex-end">  <div className="product-icon-container">
-                <img src={tube} alt="" className="product-icon" />
+                <img src={product.category?.url} alt="" className="product-icon" />
               </div></Grid>
             <Grid item xs={12}>
               <TextField
