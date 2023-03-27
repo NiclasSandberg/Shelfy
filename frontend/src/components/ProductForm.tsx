@@ -108,7 +108,7 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
               direction="row"
               alignItems="center"
               justifyContent="flex-end">  <div className="product-icon-container">
-                <img src={product.category?.url} alt="" className="product-icon" />
+                <img src={product.category?.imageUrl} alt="" className="product-icon" />
               </div></Grid>
             <Grid item xs={12}>
               <TextField

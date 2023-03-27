@@ -1,9 +1,9 @@
-INSERT INTO category(id, name, image_url) VALUES (1, 'Makeup', '../images/category-images/makeup.png');
-INSERT INTO category(id, name, image_url) VALUES (2, 'Skincare', '../images/category-images/skincare.png');
-INSERT INTO category(id, name, image_url) VALUES (3, 'Hair care', '../images/category-images/hair-care.jpg');
-INSERT INTO category(id, name, image_url) VALUES (4, 'Medicine', '../images/category-images/medicine.jpg');
-INSERT INTO category(id, name, image_url) VALUES (5, 'Towels', '../images/category-images/towels.jpg');
-INSERT INTO category(id, name, image_url) VALUES (6, 'Miscellaneous', '../images/category-images/miscellaneous.jpg');
+INSERT INTO category(id, name, image_url) VALUES (1, 'Makeup', '/category-images/makeup.png');
+INSERT INTO category(id, name, image_url) VALUES (2, 'Skincare', '/category-images/skincare.png');
+INSERT INTO category(id, name, image_url) VALUES (3, 'Hair care', '/category-images/hair-care.jpg');
+INSERT INTO category(id, name, image_url) VALUES (4, 'Medicine', '/category-images/medicine.jpg');
+INSERT INTO category(id, name, image_url) VALUES (5, 'Towels', '/category-images/towels.jpg');
+INSERT INTO category(id, name, image_url) VALUES (6, 'Miscellaneous', '/category-images/miscellaneous.jpg');
 
 
 INSERT INTO product(id, name, description, date_opened, expiry_date, period_after_opening, category_id) VALUES (123456, 'Toothbrush', 'This is my toothbrush','2023-03-21', '2024-03-21', 1, 001);

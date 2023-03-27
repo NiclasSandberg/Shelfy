@@ -54,7 +54,7 @@ const App = () => {
             </header>
             <div className="main-wrapper">
 
-              <Box component="main" sx={{ pt: 8 }}>
+              <Box component="main" sx={{ p: 2 }}>
                 <Routes>
                   <Route path="/" element={<ProductList />} />
                   <Route path="/products/:productId" element={<ProductView />} />
