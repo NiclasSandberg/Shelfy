@@ -16,7 +16,7 @@ const Filter = ({categories, filterValue, setFilterValue}: FilterAttrs) => {
 
   return (
     <>
-    <FormControl fullWidth>
+    <FormControl fullWidth sx={{ mt: 2 }}>
                 <InputLabel>Category</InputLabel>
                 <Select
                   value={filterValue}
@@ -25,7 +25,7 @@ const Filter = ({categories, filterValue, setFilterValue}: FilterAttrs) => {
                   onChange={handleFilterChange}
                 >
                   <MenuItem value={0} disabled>
-                    Please select
+                    Please select 
                   </MenuItem>
                   {categories.map((c) => (
                     <MenuItem value={c.id}>{c.name}</MenuItem>

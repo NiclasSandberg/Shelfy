@@ -40,21 +40,6 @@ const ProductList = () => {
                 filterValue={selectedCategoryId}
                 setFilterValue={setSelectedCategoryId}
             />
-{/* 
-            {products?.map((prod) => {if (prod.category.id === selectedCategoryId){<ProductCard product={prod} key={prod.id} />}} )} */}
-            
-            {/* Filter products and then map..*/}
-
-            {/*
-                products.filter((product) => {
-                    if (selectedCategoryId === 'all') {
-                        return true;
-                    }
-                    return product.id === selectedCategoryId
-                }).map(s => {
-                    <ProductCard product={undefined} />
-            
-                        })*/} 
 
         
 {
