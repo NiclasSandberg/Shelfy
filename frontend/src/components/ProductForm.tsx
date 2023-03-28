@@ -39,17 +39,17 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
 
   useEffect(() => {
     // REAL code:
-    getCategories().then(setCategories);
+    // getCategories().then(setCategories);
 
     // FAKE code: mock data, because backend endpoint is not yet implemented
-    // setCategories([
-    //   { id: 1, name: "Makeup" },
-    //   { id: 2, name: "Skincare" },
-    //   { id: 3, name: "Hair care" },
-    //   { id: 4, name: "Medicine" },
-    //   { id: 5, name: "Towels" },
-    //   { id: 6, name: "Miscellaneous" }
-    // ]);
+    setCategories([
+      { id: 1, name: "Makeup" },
+      { id: 2, name: "Skincare" },
+      { id: 3, name: "Hair care" },
+      { id: 4, name: "Medicine" },
+      { id: 5, name: "Towels" },
+      { id: 6, name: "Miscellaneous" }
+    ]);
   }, []);
 
   const getCategories = async (): Promise<ICategory[]> => {
