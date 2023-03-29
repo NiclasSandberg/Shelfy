@@ -9,13 +9,13 @@ import Filter from "./Filter";
 const ProductList = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
     const [categories, setCategories] = useState<ICategory[]>([]);
-    const [selectedCategoryId, setSelectedCategoryId] = useState<number | undefined>(undefined);
+    const [selectedCategoryId, setSelectedCategoryId] = useState<number | undefined>(0);
 
     useEffect(() => {
         getProducts().then(setProducts);
         // setProducts([{ id: "3", name: "", periodAfterOpening: "3" } as IProduct]);
         setCategories([
-            {id: 0, name: "All"},
+            { id: 0, name: "All"},
             { id: 1, name: "Makeup" },
             { id: 2, name: "Skincare" },
             { id: 3, name: "Hair care" },
@@ -45,7 +45,7 @@ const ProductList = () => {
         {
           selectedCategoryId != undefined &&  selectedCategoryId > 0
             ?products.filter( p => p.category.id === selectedCategoryId).map(p =>   <ProductCard
-                product={p}
+                product={p} 
               />
             
             ) 

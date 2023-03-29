@@ -17,16 +17,16 @@ const Filter = ({categories, filterValue, setFilterValue}: FilterAttrs) => {
   return (
     <>
     <FormControl fullWidth sx={{ mt: 2 }}>
-                <InputLabel>Category</InputLabel>
+               {/* <InputLabel>ALL</InputLabel> */}
                 <Select
                   value={filterValue}
                   variant="filled"
                   label="Category"
                   onChange={handleFilterChange}
                 >
-                  <MenuItem value={0} disabled>
+                 {/* <MenuItem value={0} disabled>
                     Please select 
-                  </MenuItem>
+                  </MenuItem> */}
                   {categories.map((c) => (
                     <MenuItem value={c.id}>{c.name}</MenuItem>
                   ))}
