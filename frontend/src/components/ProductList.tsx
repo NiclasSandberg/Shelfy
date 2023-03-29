@@ -15,6 +15,7 @@ const ProductList = () => {
         getProducts().then(setProducts);
         // setProducts([{ id: "3", name: "", periodAfterOpening: "3" } as IProduct]);
         setCategories([
+            {id: 0, name: "All"},
             { id: 1, name: "Makeup" },
             { id: 2, name: "Skincare" },
             { id: 3, name: "Hair care" },
@@ -31,8 +32,7 @@ const ProductList = () => {
         return data;
     };
 
-        console.log(products.filter(prod => prod.category.id === selectedCategoryId));
-        console.log()
+    console.log(selectedCategoryId);
     return (
         <>
             <Filter
@@ -43,7 +43,7 @@ const ProductList = () => {
 
         
         {
-          selectedCategoryId
+          selectedCategoryId != undefined &&  selectedCategoryId > 0
             ?products.filter( p => p.category.id === selectedCategoryId).map(p =>   <ProductCard
                 product={p}
               />
