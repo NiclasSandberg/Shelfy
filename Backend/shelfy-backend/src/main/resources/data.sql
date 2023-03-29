@@ -1,9 +1,9 @@
 INSERT INTO category(id, name, image_url) VALUES (1, 'Makeup', '/category-images/makeup.png');
 INSERT INTO category(id, name, image_url) VALUES (2, 'Skincare', '/category-images/skincare.png');
-INSERT INTO category(id, name, image_url) VALUES (3, 'Hair care', '/category-images/hair-care.jpg');
-INSERT INTO category(id, name, image_url) VALUES (4, 'Medicine', '/category-images/medicine.jpg');
-INSERT INTO category(id, name, image_url) VALUES (5, 'Towels', '/category-images/towels.jpg');
-INSERT INTO category(id, name, image_url) VALUES (6, 'Miscellaneous', '/category-images/miscellaneous.jpg');
+INSERT INTO category(id, name, image_url) VALUES (3, 'Hair care', '/category-images/hair-care.png');
+INSERT INTO category(id, name, image_url) VALUES (4, 'Medicine', '/category-images/medicine.png');
+INSERT INTO category(id, name, image_url) VALUES (5, 'Towels', '/category-images/towels.png');
+INSERT INTO category(id, name, image_url) VALUES (6, 'Miscellaneous', '/category-images/miscellaneous.png');
 
 
 INSERT INTO product(id, name, description, date_opened, expiry_date, period_after_opening, category_id) VALUES (123456, 'Toothbrush', 'This is my toothbrush','2023-03-21', '2024-03-21', 6, 6);

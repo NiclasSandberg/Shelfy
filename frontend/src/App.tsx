@@ -26,8 +26,8 @@ const theme = createTheme({
     secondary: {
       main: "#ddd",
       dark: "#333"
-    }
-
+    },
+    
   },
   components: {
     MuiButton: {

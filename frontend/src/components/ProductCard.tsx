@@ -8,6 +8,7 @@ import '../css/ProductCard.css';
 import { expiryDateToText } from "../functions/expirydate-to-text";
 
 
+
 interface ProductCardAttrs {
   product: IProduct;
   children?: JSX.Element;
@@ -38,17 +39,21 @@ const ProductCard = ({ product, children, showFooter = true }: ProductCardAttrs)
             <div className="card-footer">
               <p>{timeStrings.long}
               </p>
-
+              <div className="circle-bar">
+              </div>
               <CircularProgressWithLabel
-
+                
                 key={product.name}
                 size="lg"
                 variant="determinate"
                 value={timeStrings.progress}
-                sx={{ height: "5rem", width: "5rem" }}
+                sx={{ height: "5rem", width: "5rem", color:"green" }}
                 label={timeStrings.short}
+                disableShrink={true}
               />
-            </div>
+              
+              </div>
+          
           }
         </Link>
       </div>
