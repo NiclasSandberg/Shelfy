@@ -48,29 +48,29 @@ const ProductView = () => {
                 <ProductCard product={product} showFooter={false}>
                     <>
                         <Grid container spacing={4}>
-                            <Grid item xs={12}>
+                            <Grid item xs={9}>
                                 {product.description}
                             </Grid>
-                            <Grid item xs={6}>
-                                Product was opened:
+                            <Grid item xs={7}>
+                               Product opened: 
                             </Grid>
-                            <Grid item xs={6}>
-                                {product.dateOpened}
+                            <Grid item xs={5}>
+                               {product.dateOpened}
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={7}>
                                 Category:
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={5}>
                                 {product.category.name}
                             </Grid>
-                            <Grid item xs={6}>
-                                This product expires:
+                            <Grid item xs={7}>
+                                Product expires:
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={5}>
                                 {product.expiryDate}
                             </Grid>
-                            <Grid item xs={12}>
-                                This product is {timeStrings?.long}.
+                            <Grid style={{marginBottom:"1rem"}} item xs={12}>
+                                This product is {timeStrings?.long?.toLocaleLowerCase()}.
                             </Grid>
                         </Grid>
                     </>
@@ -81,10 +81,6 @@ const ProductView = () => {
                 <button>Edit product</button>
             </Link>
             <button onClick={deleteProductById}>Delete product</button>
-
-            <Link to={"/"}>
-                <button>🏠</button>
-            </Link>
         </>
     );
 };

@@ -24,7 +24,7 @@ export const expiryDateToText = (product: IProduct): { long: string|undefined, s
             : Math.min(percentageToShow, 100);
 
     let daysLeftSentence;
-    daysLeftSentence = daysUntilExpireFromToday > 0 ? daysLeftSentence ="Still good for "+ daysUntilExpireFromToday + "days" : "Product has expired!!";
+    daysLeftSentence = daysUntilExpireFromToday > 0 ? daysLeftSentence ="Still good for "+ daysUntilExpireFromToday + " days" : "Product has expired!!";
     
     return {
         long: daysUntilExpireFromToday < 30 

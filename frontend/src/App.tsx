@@ -49,11 +49,14 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Box display={"flex"} flexDirection="column">
           <BrowserRouter>
+         
             <header>
+            <Link to={"/"} style={{ textDecoration: 'none', color: "black" }}>
               <img src={logo} alt="shelfy-logo" />
+              </Link>
             </header>
             <div className="main-wrapper">
-
+            <div className="main-wrapper2">
               <Box component="main" sx={{ p: 2 }}>
                 <Routes>
                   <Route path="/" element={<ProductList />} />
@@ -66,6 +69,8 @@ const App = () => {
                 </Routes>
 
               </Box>
+
+              </div>
             </div>
           </BrowserRouter>
         </Box>

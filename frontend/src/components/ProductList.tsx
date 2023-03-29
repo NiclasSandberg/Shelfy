@@ -42,7 +42,7 @@ const ProductList = () => {
             />
 
         
-{
+        {
           selectedCategoryId
             ?products.filter( p => p.category.id === selectedCategoryId).map(p =>   <ProductCard
                 product={p}

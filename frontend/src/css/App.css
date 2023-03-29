@@ -15,6 +15,11 @@ header img {
 
 .main-wrapper {
   background-color: rgb(255, 255, 255);
-  width: 100%;
   border-radius: 1.5rem 1.5rem 0 0;
+}
+
+
+.main-wrapper2 {
+  max-width:24rem;
+  margin:auto;
 }

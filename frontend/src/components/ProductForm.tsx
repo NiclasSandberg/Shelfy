@@ -15,6 +15,7 @@ import {
   FormControl,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import '../css/ProductForm.css';
 
 import paoSymbol from '../images/pao_symbol.png'
 
@@ -92,7 +93,7 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
 
 
         <Box component="form" onSubmit={onFormSubmit} sx={{ mt: 4, mb: 4 }}>
-          <Grid container spacing={4}>
+          <Grid container alignItems="flex-end" spacing={4}>
             <Grid item xs={6}>
               <TextField
                 label="Product name"
@@ -156,12 +157,14 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
                 }}
               />
             </Grid>
-            <Grid item xs={6} container
+            <Grid item xs={3} container
               direction="row"
               alignItems="center"
               justifyContent="flex-end">
-              <img src={paoSymbol} alt="" className="product-icon" />
+              <img style={{width:"50px"}}src={paoSymbol} alt="" className="product-icon" />
             </Grid>
+            <div className="poa-desc"> <p>The symbol helps you identify how long a product is safe to use after its package has been opened for the first time.</p>
+     </div>
             <Grid item xs={12}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DemoContainer components={["DatePicker"]}>
@@ -175,21 +178,17 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
               </LocalizationProvider>
             </Grid>
             <Grid item xs={12}>
-              This product expires: {product.expiryDate}
+              This product expires: <br/>{product.expiryDate}
+            </Grid>
+            <Grid item xs={6}>
             </Grid>
             <Grid item xs={6}>
               <Button type="submit" color="secondary" variant="contained">Save</Button>
 
             </Grid>
-            <Grid item xs={6}>
-              <Link to={"/"}>
-                <Button variant="contained" color="secondary">🏠</Button>
-              </Link>
-            </Grid>
           </Grid>
         </Box>
       </div>
-      ☝🏻 The PAO symbol—aka the “Period After Opening” symbol—can be found on all sorts of bathroom goods, like makeup, lotion, over the counter medicine, and toiletries. The symbol helps you identify how long a product is safe to use after its package has been opened for the first time.
 
     </>
   );
