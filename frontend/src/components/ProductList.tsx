@@ -5,17 +5,20 @@ import ProductCard from "./ProductCard";
 import ProductForm from "./ProductForm";
 import { Button } from "@mui/material";
 import Filter from "./Filter";
+import { expiryDateToText } from "../functions/expirydate-to-text";
 
 const ProductList = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
     const [categories, setCategories] = useState<ICategory[]>([]);
     const [selectedCategoryId, setSelectedCategoryId] = useState<number | undefined>(0);
+    const [daysLeft, setDaysLeft] = useState<number | undefined>();
+    
 
     useEffect(() => {
         getProducts().then(setProducts);
-        // setProducts([{ id: "3", name: "", periodAfterOpening: "3" } as IProduct]);
+
         setCategories([
-            { id: 0, name: "All"},
+            { id: 0, name: "All" },
             { id: 1, name: "Makeup" },
             { id: 2, name: "Skincare" },
             { id: 3, name: "Hair care" },
@@ -23,7 +26,7 @@ const ProductList = () => {
             { id: 5, name: "Towels" },
             { id: 6, name: "Miscellaneous" }
         ]);
-        
+
     }, []);
 
     const getProducts = async (): Promise<IProduct[]> => {
@@ -31,8 +34,7 @@ const ProductList = () => {
         const data: IProduct[] = await response.json();
         return data;
     };
-
-    console.log(selectedCategoryId);
+   
     return (
         <>
             <Filter
@@ -41,23 +43,15 @@ const ProductList = () => {
                 setFilterValue={setSelectedCategoryId}
             />
 
-        
-        {
-          selectedCategoryId != undefined &&  selectedCategoryId > 0
-            ?products.filter( p => p.category.id === selectedCategoryId).map(p =>   <ProductCard
-                product={p} 
-              />
-            
-            ) 
-            : products.map( p =>
-                <ProductCard
-              product={p}
-            />)
-        }                
-            {/*
-            products?.map((prod) => (
-                <ProductCard product={prod} key={prod.id} />
-            ))*/}
+            {
+                selectedCategoryId != undefined && selectedCategoryId > 0
+                    ? products.filter(p => p.category.id === selectedCategoryId)
+                        .map(p => <ProductCard
+                            product={p} setDaysLeft={setDaysLeft}/>)
+
+                    : products.map(p => <ProductCard setDaysLeft={setDaysLeft}
+                            product={p} />)
+            }
 
             <Link to={"/products/new"} style={{ textDecoration: 'none', color: "black" }}>
                 <Button color="primary" variant="contained">

@@ -13,4 +13,4 @@ INSERT INTO product(id, name, description, date_opened, expiry_date, period_afte
 INSERT INTO product(id, name, description, date_opened, expiry_date, period_after_opening, category_id) VALUES (1238, 'Toothbrush', 'Bamboo toothbrush, soft bristles.','2023-02-01', '2023-05-01', 3, 6);
 INSERT INTO product(id, name, description, date_opened, expiry_date, period_after_opening, category_id) VALUES (1232, 'Shower towel', 'Big one in the bathroom downstairs.','2023-03-29', '2023-04-05', 1, 5);
 INSERT INTO product(id, name, description, date_opened, expiry_date, period_after_opening, category_id) VALUES (123456, 'Cough syrup', 'In the medicine cabinet behind the towels.','2022-03-21', '2024-03-21', 24, 4);
-INSERT INTO product(id, name, description, date_opened, expiry_date, period_after_opening, category_id) VALUES (123, 'Shower towel 2', 'Big one in the bathroom upstairs.','2023-03-29', '2023-04-05', 1, 5);
+INSERT INTO product(id, name, description, date_opened, expiry_date, period_after_opening, category_id) VALUES (123, 'Shower towel 2', 'Big one in the bathroom upstairs.','2023-02-27', '2023-03-05', 1, 5);

@@ -13,18 +13,21 @@ interface ProductCardAttrs {
   product: IProduct;
   children?: JSX.Element;
   showFooter?: boolean;
+  setDaysLeft?:(daysLeft: number | undefined) => any;
 }
 
-const ProductCard = ({ product, children, showFooter = true }: ProductCardAttrs) => {
-  const timeStrings = expiryDateToText(product);
 
+const ProductCard = ({ product, children, showFooter = true, setDaysLeft }: ProductCardAttrs) => {
+  const timeStrings = expiryDateToText(product);
+  
+  console.log(timeStrings.progressDaysLeft);
+  //pass timeStrings.progressDaysLeft to productList
   return (
     <>
       <div className="card-container">
         <Link to={"/products/" + product.id} style={{ textDecoration: 'none', color: "black" }}>
           <div className="card-header">
             <h3>{product.name}</h3>
-
             <div className="product-icon-container">
 
               <img src={product.category.imageUrl} alt="" className="product-icon" />
@@ -39,23 +42,24 @@ const ProductCard = ({ product, children, showFooter = true }: ProductCardAttrs)
             <div className="card-footer">
               <p>{timeStrings.long}
               </p>
-              <div className="circle-bar">
+              <div className="grey-circle-bar">
               </div>
+
               <CircularProgressWithLabel
-                
                 key={product.name}
                 size="lg"
                 variant="determinate"
                 value={timeStrings.progress}
-                sx={{ height: "5rem", width: "5rem", color:"green" }}
+                sx={{ height: "5rem", width: "5rem", color: timeStrings.short === "0 D" ? "#d53636": "#58b131" }}
                 label={timeStrings.short}
                 disableShrink={true}
               />
-              
-              </div>
-          
+
+            </div>
+
           }
         </Link>
+        {/*<button onClick={()=> setDaysLeft(1)}>click me</button>*/}
       </div>
 
 
