@@ -24,3 +24,10 @@ logging:
         boot:
           autoconfigure: ERROR
 
+auth0:
+  audience: http://localhost:8080
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-bsoabtbd2ae2u6vw.us.auth0.com/

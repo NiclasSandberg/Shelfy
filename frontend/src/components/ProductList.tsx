@@ -6,6 +6,7 @@ import ProductForm from "./ProductForm";
 import { Button } from "@mui/material";
 import Filter from "./Filter";
 import { expiryDateToText } from "../functions/expirydate-to-text";
+import LoginButton from "./Login";
 
 const ProductList = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
@@ -37,6 +38,7 @@ const ProductList = () => {
 
     return (
         <>
+            <LoginButton />
             <Filter
                 categories={categories}
                 filterValue={selectedCategoryId}
