@@ -1,6 +1,6 @@
 import { IProduct } from "../interfaces";
 
-export const expiryDateToText = (product: IProduct): { long: string|undefined, short: string, progress: number, progressDaysLeft: number } => {
+export const expiryDateToText = (product: IProduct): { long: string|undefined, short: string, progress: number } => {
     const today = new Date();
     
     const expiryDate = new Date(product.expiryDate);
@@ -39,6 +39,5 @@ export const expiryDateToText = (product: IProduct): { long: string|undefined, s
             ? daysUntilExpireFromToday < 1 ? 0 + " D" : daysUntilExpireFromToday + "D"
             : months + " M",
         progress: progress,
-        progressDaysLeft: daysUntilExpireFromToday
     };
 }

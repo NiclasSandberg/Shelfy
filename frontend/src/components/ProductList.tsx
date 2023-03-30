@@ -12,7 +12,7 @@ const ProductList = () => {
     const [categories, setCategories] = useState<ICategory[]>([]);
     const [selectedCategoryId, setSelectedCategoryId] = useState<number | undefined>(0);
     const [daysLeft, setDaysLeft] = useState<number | undefined>();
-    
+
 
     useEffect(() => {
         getProducts().then(setProducts);
@@ -34,7 +34,7 @@ const ProductList = () => {
         const data: IProduct[] = await response.json();
         return data;
     };
-   
+
     return (
         <>
             <Filter
@@ -44,13 +44,13 @@ const ProductList = () => {
             />
 
             {
-                selectedCategoryId != undefined && selectedCategoryId > 0
-                    ? products.filter(p => p.category.id === selectedCategoryId)
-                        .map(p => <ProductCard
-                            product={p} setDaysLeft={setDaysLeft}/>)
-
-                    : products.map(p => <ProductCard setDaysLeft={setDaysLeft}
-                            product={p} />)
+                products
+                    .filter(p => !(selectedCategoryId != undefined && selectedCategoryId > 0) || p.category.id === selectedCategoryId)
+                    .sort((a, b) => {
+                        return Date.parse(a.expiryDate) - Date.parse(b.expiryDate);
+                    })
+                    .map(p => <ProductCard
+                        product={p} />)
             }
 
             <Link to={"/products/new"} style={{ textDecoration: 'none', color: "black" }}>

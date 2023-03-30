@@ -13,15 +13,12 @@ interface ProductCardAttrs {
   product: IProduct;
   children?: JSX.Element;
   showFooter?: boolean;
-  setDaysLeft?:(daysLeft: number | undefined) => any;
 }
 
 
-const ProductCard = ({ product, children, showFooter = true, setDaysLeft }: ProductCardAttrs) => {
+const ProductCard = ({ product, children, showFooter = true }: ProductCardAttrs) => {
   const timeStrings = expiryDateToText(product);
   
-  console.log(timeStrings.progressDaysLeft);
-  //pass timeStrings.progressDaysLeft to productList
   return (
     <>
       <div className="card-container">
@@ -56,10 +53,8 @@ const ProductCard = ({ product, children, showFooter = true, setDaysLeft }: Prod
               />
 
             </div>
-
           }
         </Link>
-        {/*<button onClick={()=> setDaysLeft(1)}>click me</button>*/}
       </div>
 
 
