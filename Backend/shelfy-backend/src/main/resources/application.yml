@@ -2,6 +2,11 @@ debug: true
 server:
   port: 8080
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-bsoabtbd2ae2u6vw.us.auth0.com/
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
@@ -23,11 +28,5 @@ logging:
       springframework:
         boot:
           autoconfigure: ERROR
-
 auth0:
-  audience: http://localhost:8080
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: https://dev-bsoabtbd2ae2u6vw.us.auth0.com/
+  audience: https://shelfy.com

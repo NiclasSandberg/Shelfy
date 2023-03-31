@@ -6,8 +6,10 @@ import { expiryDateToText } from "../functions/expirydate-to-text";
 import { IProduct } from "../interfaces";
 import { CircularProgressWithLabel } from "./CircularProgressWithLabel";
 import ProductCard from "./ProductCard";
+import { useAuth } from "../context/auth-context";
 
 const ProductView = () => {
+    const { token } = useAuth();
     const { productId } = useParams();
     const [product, setProduct] = useState<IProduct>();
     const navigate = useNavigate();
@@ -15,8 +17,15 @@ const ProductView = () => {
 
     const getProductById = async () => {
         const response: Response = await fetch(
-            "http://localhost:8080/products/" + productId
+            "http://localhost:8080/products/" + productId,
+            {
+                headers: {
+                    "Authorization": "Bearer " + token,
+                }
+            }
+
         );
+
         const data: IProduct = await response.json();
 
         setProduct(data);
@@ -29,6 +38,9 @@ const ProductView = () => {
             "http://localhost:8080/products/" + productId,
             {
                 method: "DELETE",
+                headers: {
+                    "Authorization": "Bearer " + token,
+                }
             }
         );
 
@@ -52,10 +64,10 @@ const ProductView = () => {
                                 {product.description}
                             </Grid>
                             <Grid item xs={7}>
-                               Product opened: 
+                                Product opened:
                             </Grid>
                             <Grid item xs={5}>
-                               {product.dateOpened}
+                                {product.dateOpened}
                             </Grid>
                             <Grid item xs={7}>
                                 Category:
@@ -69,7 +81,7 @@ const ProductView = () => {
                             <Grid item xs={5}>
                                 {product.expiryDate}
                             </Grid>
-                            <Grid style={{marginBottom:"1rem"}} item xs={12}>
+                            <Grid style={{ marginBottom: "1rem" }} item xs={12}>
                                 This product is {timeStrings?.long?.toLocaleLowerCase()}.
                             </Grid>
                         </Grid>

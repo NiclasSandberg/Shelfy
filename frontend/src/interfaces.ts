@@ -13,3 +13,8 @@ export interface ICategory {
     name?: string;
     imageUrl?: string;
 }
+
+export interface IAuthContext {
+    token: string | null;
+    userMetadata: any;
+}
