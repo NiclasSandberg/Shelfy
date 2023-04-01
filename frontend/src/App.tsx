@@ -17,6 +17,8 @@ import { Box } from "@mui/system";
 import logo from './images/shelfy-logo.png'
 import SplashPage from "./components/SplashPage";
 import { useAuth } from "./context/auth-context";
+import { useAuth0 } from "@auth0/auth0-react";
+import LogoutButton from "./components/Logout";
 
 const theme = createTheme({
   palette: {
@@ -47,6 +49,7 @@ const theme = createTheme({
 
 const App = () => {
   const { token } = useAuth();
+  const { isAuthenticated } = useAuth0();
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -57,6 +60,7 @@ const App = () => {
               <Link to={"/"} style={{ textDecoration: 'none', color: "black" }}>
                 <img src={logo} alt="shelfy-logo" />
               </Link>
+              {isAuthenticated && <LogoutButton />}
             </header>
             <div className="main-wrapper">
               <div className="main-wrapper2">
@@ -71,9 +75,7 @@ const App = () => {
                       element={<EditProduct />}
                     />
                   </Routes>
-
                 </Box>
-
               </div>
             </div>
           </BrowserRouter>

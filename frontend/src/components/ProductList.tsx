@@ -7,12 +7,14 @@ import { Button } from "@mui/material";
 import Filter from "./Filter";
 import { expiryDateToText } from "../functions/expirydate-to-text";
 import LoginButton from "./Login";
+import { useAuth } from "../context/auth-context";
 
 const ProductList = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
     const [categories, setCategories] = useState<ICategory[]>([]);
     const [selectedCategoryId, setSelectedCategoryId] = useState<number | undefined>(0);
     const [daysLeft, setDaysLeft] = useState<number | undefined>();
+    const { token } = useAuth();
 
 
     useEffect(() => {
@@ -31,14 +33,18 @@ const ProductList = () => {
     }, []);
 
     const getProducts = async (): Promise<IProduct[]> => {
-        const response: Response = await fetch("http://localhost:8080/products");
+        const response: Response = await fetch("http://localhost:8080/products", {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token,
+            }
+        })
         const data: IProduct[] = await response.json();
         return data;
     };
 
     return (
         <>
-            <LoginButton />
             <Filter
                 categories={categories}
                 filterValue={selectedCategoryId}
@@ -52,7 +58,7 @@ const ProductList = () => {
                         return Date.parse(a.expiryDate) - Date.parse(b.expiryDate);
                     })
                     .map(p => <ProductCard
-                        product={p} />)
+                        product={p} key={p.id} />)
             }
 
             <Link to={"/products/new"} style={{ textDecoration: 'none', color: "black" }}>

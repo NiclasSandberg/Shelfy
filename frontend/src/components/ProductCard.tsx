@@ -18,7 +18,7 @@ interface ProductCardAttrs {
 
 const ProductCard = ({ product, children, showFooter = true }: ProductCardAttrs) => {
   const timeStrings = expiryDateToText(product);
-  
+
   return (
     <>
       <div className="card-container">
@@ -47,9 +47,9 @@ const ProductCard = ({ product, children, showFooter = true }: ProductCardAttrs)
                 size="lg"
                 variant="determinate"
                 value={timeStrings.progress}
-                sx={{ height: "5rem", width: "5rem", color: timeStrings.short === "0 D" ? "#d53636": "#58b131" }}
+                sx={{ height: "5rem", width: "5rem", color: timeStrings.short === "0 D" ? "#d53636" : "#58b131" }}
                 label={timeStrings.short}
-                disableShrink={true}
+                disableShrink={false}
               />
 
             </div>

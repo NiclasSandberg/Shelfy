@@ -2,13 +2,15 @@ import { jsx } from '@emotion/react'
 import React, { useEffect, useState } from 'react'
 import { AuthContext, useAuth } from '../context/auth-context';
 import { useAuth0 } from '@auth0/auth0-react';
+import { shelfyConfig } from "../config/config";
+import SplashPage from './SplashPage';
 
 interface AuthWrapperAttrs {
     children: JSX.Element;
 }
 
 const AuthWrapper = ({ children }: AuthWrapperAttrs) => {
-    const { getAccessTokenSilently, user, getAccessTokenWithPopup } = useAuth0();
+    const { getAccessTokenSilently, user, getAccessTokenWithPopup, isLoading } = useAuth0();
     const [userMetadata, setUserMetadata] = useState<any>();
     console.log(userMetadata);
     const [token, setToken] = useState<string | null>(null)
@@ -16,13 +18,12 @@ const AuthWrapper = ({ children }: AuthWrapperAttrs) => {
 
     useEffect(() => {
         const getUserMetadata = async () => {
-            const domain = "dev-bsoabtbd2ae2u6vw.us.auth0.com";
 
             try {
-                const accessToken = await getAccessTokenWithPopup({
+                const accessToken = await getAccessTokenSilently({
                     authorizationParams: {
-                        audience: `https://${domain}/api/v2/`,
-                        scope: "read:current_user",
+                        audience: shelfyConfig.audience,
+                        scope: shelfyConfig.scope,
                     },
                 });
                 // const userDetailsByIdUrl = `https://${domain}/api/v2/users/${user?.sub}`;
@@ -48,7 +49,15 @@ const AuthWrapper = ({ children }: AuthWrapperAttrs) => {
     return (
         <>
             <AuthContext.Provider value={{ token: token, userMetadata: userMetadata }}>
-                {token && children}
+                {
+                    isLoading
+                        ? <h1>Loading...</h1>
+                        : (
+                            token
+                                ? children
+                                : <SplashPage />
+                        )
+                }
             </AuthContext.Provider >
         </>
 

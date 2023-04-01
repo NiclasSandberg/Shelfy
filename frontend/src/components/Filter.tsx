@@ -3,35 +3,35 @@ import React from 'react'
 import { ICategory } from '../interfaces';
 
 interface FilterAttrs {
-    categories: ICategory[];
-    filterValue: number | undefined;
-    setFilterValue: (filterValue: number | undefined) => any;
+  categories: ICategory[];
+  filterValue: number | undefined;
+  setFilterValue: (filterValue: number | undefined) => any;
 }
 
-const Filter = ({categories, filterValue, setFilterValue}: FilterAttrs) => {
-    const handleFilterChange = (e: any) => {
-        e.preventDefault();
-        setFilterValue(e.target.value);
-    }
+const Filter = ({ categories, filterValue, setFilterValue }: FilterAttrs) => {
+  const handleFilterChange = (e: any) => {
+    e.preventDefault();
+    setFilterValue(e.target.value);
+  }
 
   return (
     <>
-    <FormControl fullWidth sx={{ mt: 2 }}>
-               {/* <InputLabel>ALL</InputLabel> */}
-                <Select
-                  value={filterValue}
-                  variant="filled"
-                  label="Category"
-                  onChange={handleFilterChange}
-                >
-                 {/* <MenuItem value={0} disabled>
+      <FormControl fullWidth sx={{ mt: 2 }}>
+        {/* <InputLabel>ALL</InputLabel> */}
+        <Select
+          value={filterValue}
+          variant="filled"
+          label="Category"
+          onChange={handleFilterChange}
+        >
+          {/* <MenuItem value={0} disabled>
                     Please select 
                   </MenuItem> */}
-                  {categories.map((c) => (
-                    <MenuItem value={c.id}>{c.name}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+          {categories.map((c) => (
+            <MenuItem value={c.id} key={c.id}>{c.name}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </>
   )
 }
