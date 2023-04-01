@@ -13,7 +13,7 @@ root.render(
   <React.StrictMode>
     <Auth0Provider
       domain={shelfyConfig.domain}
-      clientId={shelfyConfig.appId}
+      clientId={shelfyConfig.clientId}
       authorizationParams={{
         redirect_uri: "http://localhost:3000/products",
         audience: shelfyConfig.audience,

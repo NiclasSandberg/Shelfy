@@ -1,6 +1,5 @@
 package com.example.shelfybackend.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +14,7 @@ import java.util.Date;
 public class Product {
     @Id
     @GeneratedValue
-    private Long id;
+    private Long productId;
     private String name;
     private String description;
 
@@ -30,5 +29,9 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = true)
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    private User user;
 
 }

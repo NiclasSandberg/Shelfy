@@ -4,9 +4,19 @@ server:
 spring:
   security:
     oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: https://dev-bsoabtbd2ae2u6vw.us.auth0.com/
+      client:
+        registration:
+          auth0:
+            client-id: Sh6DVjDkmQI8ryNrkmEG5eecFWFJIbIc
+            client-secret: RJco3dSHnE2H2XOzQ9UnbmYdyxR_LRNWaO2JJummN-BogIh7yL3aIrhXhvghYSCz
+            scope:
+              - openid
+              - profile
+              - email
+        provider:
+          auth0:
+            # trailing slash is important!
+            issuer-uri: https://dev-bsoabtbd2ae2u6vw.us.auth0.com/
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
@@ -29,4 +39,4 @@ logging:
         boot:
           autoconfigure: ERROR
 auth0:
-  audience: https://shelfy.com
+  audience: https://dev-bsoabtbd2ae2u6vw.us.auth0.com/api/v2/

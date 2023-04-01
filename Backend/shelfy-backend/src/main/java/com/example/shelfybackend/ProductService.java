@@ -2,6 +2,7 @@ package com.example.shelfybackend;
 
 import com.example.shelfybackend.models.Category;
 import com.example.shelfybackend.models.Product;
+import com.example.shelfybackend.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,9 @@ public class ProductService {
 
     @Autowired
     ProductRepo repo;
+
+    @Autowired
+    UserRepo userRepo;
 
     public List<Product> getAllProducts() {
         return repo.getAllProducts();
@@ -36,5 +40,11 @@ public class ProductService {
 
     public List<Category> getAllCategories() {
         return repo.getAllCategories();
+    }
+
+
+    public List<Product> getProductsByUserId(Long userId) {
+        User user = userRepo.getUserById(userId);
+        return user.getUserProducts();
     }
 }

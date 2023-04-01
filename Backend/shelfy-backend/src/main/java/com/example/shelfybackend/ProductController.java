@@ -1,9 +1,12 @@
 package com.example.shelfybackend;
 
+import ch.qos.logback.core.model.Model;
 import com.example.shelfybackend.models.Category;
 import com.example.shelfybackend.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,8 +26,14 @@ public class ProductController {
     }
 
     @GetMapping
-    ResponseEntity<List<Product>> getAllProducts() {
-        List<Product> products = service.getAllProducts();
+    ResponseEntity<List<Product>> getAllProductsForUser(@AuthenticationPrincipal OidcUser principal) {
+        // through the annotation @AuthenticationPrincipal in HomeController in auth0 docs we can get decrypted user
+        //(Model model, @AuthenticationPrincipal OidcUser principal)
+        // from the token, get the email, from the email get the userId
+        Long userId = 888l;
+        List<Product> products = service.getProductsByUserId(userId);
+        System.out.println(principal.getClaims());
+
         return ResponseEntity.ok(products);
     }
 
