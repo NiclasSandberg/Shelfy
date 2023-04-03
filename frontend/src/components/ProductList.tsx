@@ -33,7 +33,7 @@ const ProductList = () => {
     }, []);
 
     const getProducts = async (): Promise<IProduct[]> => {
-        const response: Response = await fetch("http://localhost:8080/products", {
+        const response: Response = await fetch("/api/products", {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + token,

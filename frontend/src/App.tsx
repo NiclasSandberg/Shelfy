@@ -57,10 +57,10 @@ const App = () => {
           <BrowserRouter>
 
             <header>
-              <Link to={"/"} style={{ textDecoration: 'none', color: "black" }}>
+              <Link to={"/products"} style={{ textDecoration: 'none', color: "black" }}>
                 <img src={logo} alt="shelfy-logo" />
               </Link>
-              {isAuthenticated && <LogoutButton />}
+              {isAuthenticated && <LogoutButton />} 
             </header>
             <div className="main-wrapper">
               <div className="main-wrapper2">

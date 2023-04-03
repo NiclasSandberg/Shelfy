@@ -4,6 +4,7 @@ import com.example.shelfybackend.security.AudienceValidator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
@@ -34,12 +35,14 @@ public class SecurityConfig {
                 .disable()
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.OPTIONS, "*")
-                .permitAll()
+                .authenticated()
+//                .permitAll()
 //                .mvcMatchers("/api/public").permitAll()
 //                .mvcMatchers("/api/private").authenticated()
 //                .mvcMatchers("/api/private-scoped").hasAuthority("SCOPE_read:messages")
-                .and().cors()
-                .and().oauth2ResourceServer().jwt();
+//                .and().cors(Customizer.withDefaults())
+                .and()
+                .oauth2ResourceServer().jwt();
         return http.build();
     }
 

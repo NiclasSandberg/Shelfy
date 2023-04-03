@@ -14,7 +14,8 @@ import java.util.Date;
 public class Product {
     @Id
     @GeneratedValue
-    private Long productId;
+    @Column(name="product_id")
+    private Long id;
     private String name;
     private String description;
 

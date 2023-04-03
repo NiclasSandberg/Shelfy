@@ -17,7 +17,7 @@ const ProductView = () => {
 
     const getProductById = async () => {
         const response: Response = await fetch(
-            "http://localhost:8080/products/" + productId,
+            "/api/products/" + productId,
             {
                 headers: {
                     "Authorization": "Bearer " + token,
@@ -35,7 +35,7 @@ const ProductView = () => {
         console.log("entered deleteProductById name: " + productId);
 
         const response = await fetch(
-            "http://localhost:8080/products/" + productId,
+            "/api/products/" + productId,
             {
                 method: "DELETE",
                 headers: {
@@ -44,7 +44,7 @@ const ProductView = () => {
             }
         );
 
-        navigate("/");
+        navigate("/products");
     };
 
     useEffect(() => {

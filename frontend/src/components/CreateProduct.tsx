@@ -17,7 +17,7 @@ const CreateProduct = () => {
 
 
 
-    const createdProduct: IProduct = await fetch("http://localhost:8080/products",
+    const createdProduct: IProduct = await fetch("/api/products",
       {
         method: "POST",
         body: JSON.stringify(newProduct),
@@ -26,7 +26,6 @@ const CreateProduct = () => {
           "Authorization": "Bearer " + token,
         }
       }).then(a => a.json()).catch(error => { console.log(error) });
-
 
     navigate("/products/" + createdProduct.id);
   }

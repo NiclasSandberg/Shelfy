@@ -13,7 +13,7 @@ const EditProduct = () => {
 
   const getProductById = async (): Promise<IProduct> => {
     const response: Response = await fetch(
-      "http://localhost:8080/products/" + productId
+      "/api/products/" + productId
     );
     const data: IProduct = await response.json();
 
@@ -22,7 +22,7 @@ const EditProduct = () => {
 
 
   const handleEditedProduct = async (editedProduct: IProduct) => {
-    const createdProduct: IProduct = await fetch("http://localhost:8080/products/" + productId,
+    const createdProduct: IProduct = await fetch("/api/products/" + productId,
       {
         method: "PUT",
         body: JSON.stringify(editedProduct),

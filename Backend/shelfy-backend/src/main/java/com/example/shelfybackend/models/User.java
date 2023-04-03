@@ -14,9 +14,12 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "users")
 public class User {
+//    @Id
+//    @GeneratedValue
+//    private Long id;
+
     @Id
-    @GeneratedValue
-    private Long id;
+    private String userId;
 
     @Column(unique=true)
     private String userName;

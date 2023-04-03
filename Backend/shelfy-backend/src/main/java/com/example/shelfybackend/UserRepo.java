@@ -13,8 +13,9 @@ public class UserRepo {
     @Autowired
     IUserRepo userRepo;
 
-    public User getUserById(Long id){
+    public User getUserById(String id){
         Optional<User> byId = userRepo.findById(id);
         return byId.orElse(null);
     }
+
 }

@@ -26,7 +26,8 @@ public class ProductService {
     }
 
 
-    public Product saveProduct(Product product) {
+    public Product saveProduct(Product product, String userId) {
+        product.setUser(userRepo.getUserById(userId));
         return repo.saveNewProduct(product);
     }
 
@@ -43,8 +44,18 @@ public class ProductService {
     }
 
 
-    public List<Product> getProductsByUserId(Long userId) {
+    public List<Product> getProductsByUserId(String userId) {
         User user = userRepo.getUserById(userId);
         return user.getUserProducts();
     }
+
+    // check if user has been created before
+    public boolean userExists(String id){
+        if(userRepo.getUserById(id) != null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }

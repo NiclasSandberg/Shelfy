@@ -54,7 +54,7 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
   }, []);
 
   const getCategories = async (): Promise<ICategory[]> => {
-    const response: Response = await fetch("http://localhost:8080/products/categories/");
+    const response: Response = await fetch("/api/products/categories/");
     const data: ICategory[] = await response.json();
 
     return data;
