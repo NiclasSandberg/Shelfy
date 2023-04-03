@@ -8,6 +8,8 @@ import Filter from "./Filter";
 import { expiryDateToText } from "../functions/expirydate-to-text";
 import LoginButton from "./Login";
 import { useAuth } from "../context/auth-context";
+import LogoutButton from "./Logout";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const ProductList = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
@@ -15,6 +17,7 @@ const ProductList = () => {
     const [selectedCategoryId, setSelectedCategoryId] = useState<number | undefined>(0);
     const [daysLeft, setDaysLeft] = useState<number | undefined>();
     const { token } = useAuth();
+    const { isAuthenticated } = useAuth0();
 
 
     useEffect(() => {
@@ -66,6 +69,8 @@ const ProductList = () => {
                     add new product
                 </Button>
             </Link>
+            
+            {isAuthenticated && <LogoutButton />} 
         </>
     );
 };

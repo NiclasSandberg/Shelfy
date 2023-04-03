@@ -62,14 +62,12 @@ public class ProductController {
         Product newProduct = service.saveProduct(product, id);
         //newProduct.setUser();
         System.out.println("THE ID IS HERE POSTMAPPING: " + SecurityContextHolder.getContext().getAuthentication().getName().toString());
-
-
-
         return ResponseEntity.ok(newProduct);
     }
     
     @PutMapping("/{id}")
     ResponseEntity<Product> updateProduct(@RequestBody Product updatedProduct, @PathVariable String id){
+
         if (service.getProductById(id) == null) {
             return ResponseEntity.notFound().build();
         }

@@ -13,7 +13,12 @@ const EditProduct = () => {
 
   const getProductById = async (): Promise<IProduct> => {
     const response: Response = await fetch(
-      "/api/products/" + productId
+      "/api/products/" + productId,
+      {
+        headers: {
+            "Authorization": "Bearer " + token,
+        }
+    }
     );
     const data: IProduct = await response.json();
 

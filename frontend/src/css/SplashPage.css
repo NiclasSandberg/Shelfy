@@ -1,0 +1,16 @@
+.splash-wrapper{
+    background-color: rgb(202, 202, 202);
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-wrapper{
+    text-align: center;
+
+}
+
+.content-wrapper img{
+    width:15rem;
+}
