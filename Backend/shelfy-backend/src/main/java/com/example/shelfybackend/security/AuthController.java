@@ -1,4 +1,4 @@
-package com.example.shelfybackend;
+package com.example.shelfybackend.security;
 
 import com.example.shelfybackend.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;

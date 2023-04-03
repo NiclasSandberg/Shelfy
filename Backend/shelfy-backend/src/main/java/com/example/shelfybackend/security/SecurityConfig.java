@@ -1,5 +1,6 @@
-package com.example.shelfybackend;
+package com.example.shelfybackend.security;
 
+import com.example.shelfybackend.security.AudienceValidator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;

@@ -19,7 +19,6 @@ root.render(
         audience: shelfyConfig.audience,
         scope: shelfyConfig.scope
       }}
-
     >
       <AuthWrapper>
         <App />
