@@ -7,6 +7,8 @@ import { IProduct } from "../interfaces";
 import { CircularProgressWithLabel } from "./CircularProgressWithLabel";
 import ProductCard from "./ProductCard";
 import { useAuth } from "../context/auth-context";
+import '../css/ProductView.css';
+
 
 const ProductView = () => {
     const { token } = useAuth();
@@ -82,17 +84,22 @@ const ProductView = () => {
                                 {product.expiryDate}
                             </Grid>
                             <Grid style={{ marginBottom: "1rem" }} item xs={12}>
-                                This product is {timeStrings?.long?.toLocaleLowerCase()}.
+                                {timeStrings?.long}
                             </Grid>
                         </Grid>
                     </>
                 </ProductCard>
             </>}
+<div className="buttons-section-view-page">
 
-            <Link to={'/products/' + productId + '/edit'}>
-                <button>Edit product</button>
+            <Button onClick={deleteProductById} color="primary" variant="contained">Delete</Button>
+            <Link to={'/products/' + productId + '/edit'} style={{ textDecoration: 'none', color: "black" }}>
+                <Button color="primary" variant="contained">
+                Edit
+                </Button>
+                
             </Link>
-            <button onClick={deleteProductById}>Delete product</button>
+</div>
         </>
     );
 };

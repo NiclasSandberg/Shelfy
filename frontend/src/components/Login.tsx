@@ -11,7 +11,7 @@ const LoginButton = () => {
 
     <> 
 
-<Button color="primary" variant="contained" style={{marginLeft:"2rem", backgroundColor:"#D9D9D9"}}
+<Button variant="contained" style={{backgroundColor:"#808080"}}
         onClick={() => loginWithRedirect()}> 
             Login
         </Button>

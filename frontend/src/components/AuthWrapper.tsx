@@ -4,6 +4,8 @@ import { AuthContext, useAuth } from '../context/auth-context';
 import { useAuth0 } from '@auth0/auth0-react';
 import { shelfyConfig } from "../config/config";
 import SplashPage from './SplashPage';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 interface AuthWrapperAttrs {
     children: JSX.Element;
@@ -51,7 +53,9 @@ const AuthWrapper = ({ children }: AuthWrapperAttrs) => {
             <AuthContext.Provider value={{ token: token, userMetadata: userMetadata }}>
                 {
                     isLoading
-                        ? <h1>Loading...</h1>
+                        ? <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height:'100vh'}}>
+                            <CircularProgress style={{color: '#808080'}}/>
+                          </Box>
                         : (
                             token
                                 ? children

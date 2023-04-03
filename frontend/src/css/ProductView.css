@@ -1,0 +1,6 @@
+.buttons-section-view-page{
+    display:flex;
+    justify-content: space-between;
+    margin:0 2rem;
+    padding: 0rem;
+}

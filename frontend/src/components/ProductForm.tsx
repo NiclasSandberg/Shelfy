@@ -32,10 +32,9 @@ const ProductForm = ({ product, onSubmit }: ProductFormAttrs) => {
   const [dateOpened, setDateOpened] = useState<Dayjs>(
     dayjs(product.dateOpened || new Date())
   );
-  const [months, setMonths] = useState<string>("0");
-  const [categoryId, setCategoryId] = useState<number>(
-    product.category?.id || 0
-  );
+  const [months, setMonths] = useState<string>(product.periodAfterOpening || "0");
+  //const [expiryDate, setExpiryDate] = useState<string>(product.expiryDate || "(will be calculated)");
+  const [categoryId, setCategoryId] = useState<number>(product.category?.id || 0);
   const [categories, setCategories] = useState<ICategory[]>([]);
 
   useEffect(() => {

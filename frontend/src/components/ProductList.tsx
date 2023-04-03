@@ -10,6 +10,7 @@ import LoginButton from "./Login";
 import { useAuth } from "../context/auth-context";
 import LogoutButton from "./Logout";
 import { useAuth0 } from "@auth0/auth0-react";
+import '../css/ProductList.css';
 
 const ProductList = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
@@ -63,7 +64,7 @@ const ProductList = () => {
                     .map(p => <ProductCard
                         product={p} key={p.id} />)
             }
-
+            <div className="buttons-section">
             <Link to={"/products/new"} style={{ textDecoration: 'none', color: "black" }}>
                 <Button color="primary" variant="contained">
                     add new product
@@ -71,6 +72,7 @@ const ProductList = () => {
             </Link>
             
             {isAuthenticated && <LogoutButton />} 
+            </div>
         </>
     );
 };

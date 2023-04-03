@@ -12,7 +12,7 @@ const SplashPage = () => {
             <div className="splash-wrapper">
                 <div className="content-wrapper">
             <img src={logo} alt="shelfy logo"/>
-            <h2>Track the shelf life of your bathroom products.
+            <h2>Track the shelf life of your bathroom products
 </h2>
             {user && <h3>{user.name}</h3>}
             {!isAuthenticated && <LoginButton />}
