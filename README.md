@@ -13,3 +13,4 @@
 ## Database
  PostgreSQL
 
+#### Created by Niclas Snitt-Sandberg & Céline Kaiser
