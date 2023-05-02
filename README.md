@@ -1,6 +1,6 @@
 # Shelfy
  Fullstack web application that keeps track of the expiry date of your bathroom products.
- The application was created by in 12 days at the Salt Java fullstack bootcamp in Stockholm.
+ The application was created in 12 days at the Salt Java fullstack bootcamp in Stockholm.
  
 ## Techstack
 ## Frontend
